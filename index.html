@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CartPour – cocktails from your shelf</title>
+<meta name="description" content="Tick the bottles you own and CartPour shows every cocktail you can pour tonight. Works offline, no account, no tracking.">
+<link rel="icon" href="img/logo.png">
+<meta name="theme-color" content="#f6f1ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0618" media="(prefers-color-scheme: dark)">
+<style>
+  :root { --ink: #1d1530; --muted: #5d5470; --ground: #f6f1ff; --card: rgba(255,255,255,.7); --edge: rgba(255,255,255,.9); --link: #6d28d9;
+    --hot: linear-gradient(120deg, #d6168f, #7c3aed 55%, #0e7490); }
+  @media (prefers-color-scheme: dark) { :root { --ink: #efe9fb; --muted: #b3a9c9; --ground: #0a0618; --card: rgba(255,255,255,.06); --edge: rgba(255,255,255,.14); --link: #c4b5fd; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); background: var(--ground); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(70% 50% at 0 0, rgba(255,79,200,.28), transparent 70%), radial-gradient(60% 50% at 100% 10%, rgba(34,211,238,.24), transparent 70%), radial-gradient(70% 60% at 50% 100%, rgba(139,92,246,.22), transparent 70%); }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 48px; }
+  header { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; }
+  header img { width: 36px; height: 36px; }
+  .hero { display: grid; gap: 40px; align-items: center; padding: 48px 0 24px; }
+  @media (min-width: 820px) { .hero { grid-template-columns: 1.1fr 1fr; } }
+  h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 16px;
+    background: linear-gradient(90deg, #4c1d95, #a3106f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  @media (prefers-color-scheme: dark) { h1 { background-image: linear-gradient(90deg, #f0abfc, #a5f3fc); } }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 24px; max-width: 34ch; }
+  .badge { display: inline-block; padding: 12px 22px; border-radius: 999px; background: var(--hot); color: #fff; font-weight: 600; box-shadow: 0 8px 24px rgba(124,58,237,.35); }
+  .shots { display: flex; gap: 14px; justify-content: center; }
+  .shots img { width: 31%; max-width: 200px; border-radius: 22px; border: 1px solid var(--edge); box-shadow: 0 16px 40px rgba(76,29,149,.22); }
+  .shots img:nth-child(2) { transform: translateY(-18px); }
+  .points { display: grid; gap: 14px; margin: 40px 0; padding: 0; list-style: none; }
+  @media (min-width: 720px) { .points { grid-template-columns: repeat(3, 1fr); } }
+  .points li { padding: 20px; border-radius: 20px; background: var(--card); border: 1px solid var(--edge); }
+  .points b { display: block; margin-bottom: 4px; }
+  .points span { color: var(--muted); font-size: 15px; }
+  footer { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 15px; border-top: 1px solid var(--edge); padding-top: 20px; }
+  a { color: var(--link); }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="img/logo.png" alt="" width="36" height="36">CartPour</header>
+  <section class="hero">
+    <div>
+      <h1>Cocktails from the bottles you already own.</h1>
+      <p class="lead">Tick what's on your shelf and CartPour shows every drink you can pour tonight, the ones you're one bottle away from, and the next bottle worth buying.</p>
+      <span class="badge">Coming soon to Google Play</span>
+    </div>
+    <div class="shots">
+      <img src="img/phone-1-home.png" alt="CartPour home screen: You can pour 45 drinks tonight" loading="lazy">
+      <img src="img/phone-3-recipe.png" alt="A recipe with amounts and steps" loading="lazy">
+      <img src="img/phone-4-zero-proof.png" alt="Zero Proof mocktails" loading="lazy">
+    </div>
+  </section>
+  <ul class="points">
+    <li><b>600+ recipes</b><span>Classics, brand recipes and 100 Zero Proof mocktails, with steps, servings and oz or ml.</span></li>
+    <li><b>Works offline</b><span>Everything is inside the app. No account, no ads, no tracking.</span></li>
+    <li><b>Find by mood</b><span>Filter by flavor, theme or brand, and star your favorites.</span></li>
+  </ul>
+  <footer><span>© 2026 CartPour</span><a href="/privacy/">Privacy policy</a><a href="mailto:main@cartpour.com">main@cartpour.com</a><span>Please drink responsibly.</span></footer>
+</main>
+</body>
+</html>
