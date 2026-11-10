@@ -731,6 +731,10 @@ html[data-text] body{zoom:var(--z)}
 html[data-text] #settings{max-height:calc((100dvh - 88px)/var(--z))}
 html[data-text] #rdlg .rbox{max-height:calc(88dvh/var(--z))}
 @media(min-width:700px){html[data-text] #rdlg .rbox{max-height:calc(86vh/var(--z))}}
+/* Most used ⇄ shelf chips glide (glide() in the script): only the named chips move, the rest of the page swaps at once */
+::view-transition-group(*){animation-duration:420ms;animation-timing-function:var(--ease-out)}
+::view-transition-old(*),::view-transition-new(*){height:100%;animation-duration:220ms}
+::view-transition-old(root),::view-transition-new(root){animation:none}
 /* entrance: on launch only (html.enter, removed by script after 1s) the first screen rises in, 60 ms apart; blur only on small parts, a blurred section stutters on phones */
 @media(prefers-reduced-motion:no-preference){
 html.enter :is(.top,.tick,#greet,#greet2,#rnowbox,#t1,#t2,#zp){animation:rise 520ms var(--ease-out) both}
@@ -2620,8 +2624,14 @@ document.addEventListener('click',e=>{
   const so=e.target.closest('[data-s],[data-dir]');if(so){so.dataset.dir?dir=so.dataset.dir:(srt=so.dataset.s,$('smenu').open=false);
    try{localStorage.setItem('barSort',srt);localStorage.setItem('barDir',dir)}catch(x){}draw();return}
   const b=e.target.closest('[data-k]');
-  if(b){const k=b.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)}
+  if(b){const k=b.dataset.k,go=()=>{sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)};b.closest('#most,#mine')?glide(go):go()}
 });
+// Most used and shelf chips glide between the two lists (View Transitions, like the watermelon tags); without it, or with reduce motion, they just redraw
+// the label, type box and shelves under the chips glide with them, or the Most used row slides over the type box while the shelf grows or shrinks
+const vtn=on=>{document.querySelectorAll('#most [data-k],#mine [data-k]').forEach(c=>c.style.viewTransitionName=on?'k'+[...c.dataset.k].map(ch=>ch.codePointAt(0).toString(36)).join('-'):'');
+ ['mostl','q','dd'].forEach(i=>$(i).style.viewTransitionName=on?'vt-'+i:'')};
+function glide(f){if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduce')return f();
+ vtn(1);document.startViewTransition(()=>{f();vtn(1)}).finished.finally(()=>vtn(0))}
 const SPEC=['frangelico','southern comfort','galliano','drambuie','licor 43','rumchata','jägermeister','amarula','chocolate liqueur','tuaca','hpnotiq','ginger liqueur','pomegranate liqueur','sambuca','ouzo','peach schnapps','peppermint schnapps','cinnamon schnapps','butterscotch schnapps']; // shown in their own box under Liqueurs
 const VAR={vodka:['citron vodka','lime vodka','orange vodka','grapefruit vodka','raspberry vodka','blueberry vodka','peach vodka','apple vodka','cucumber vodka','vanilla vodka','whipped cream vodka'],gin:['pink gin','orange gin','rhubarb gin','sloe gin'],rum:['dark rum','spiced rum','coconut rum','pineapple rum','mango rum','banana rum','vanilla rum'],tequila:['coconut tequila','coffee tequila','pineapple tequila','mango tequila','jalapeño tequila'],whiskey:['bourbon','cinnamon whiskey','apple whiskey','honey whiskey','peach whiskey','pineapple whiskey'],brandy:['apple brandy','cherry brandy','apricot brandy','peach brandy','blackberry brandy']},VK=new Set(Object.values(VAR).flat());
 const kchip=k=>`<button class="chip" data-k="${k}">${k}</button>`;
