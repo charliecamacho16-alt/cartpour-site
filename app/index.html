@@ -375,14 +375,18 @@ html[data-page="zero"] .tick,.tick[hidden]{display:none}
 /* the A-Z strip beside the results, while they are sorted by name; shows while the drinks are on screen */
 .oaz{position:fixed;z-index:3;right:4px;top:50%;translate:0 -50%;display:flex;flex-direction:column;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:none;user-select:none;opacity:0;visibility:hidden}
 #oaz button{flex:none;height:17px} /* condensed: a short column of letters centred on the right edge */
+/* collapsed to an "A–Z" tab so it does not sit over the cards; it opens on hover, on a tap (the nav takes focus) or with the keyboard */
+#oaz:not(:focus-within,:hover){right:0;padding:0;border-right:0;border-radius:14px 0 0 14px}
+#oaz:not(:focus-within,:hover) button{display:none}
+#oaz:not(:focus-within,:hover)::before{content:"A\A·\A Z";white-space:pre;display:block;width:22px;padding:10px 0;text-align:center;font:700 11px/1.35 var(--sans,inherit);color:var(--accent)}
+#oaz:focus:not(:focus-visible){outline:0}
 .oaz.on{opacity:1;visibility:visible}
-@media(max-width:1180px){#out.azp{padding-right:26px}}
+@media(max-width:1180px){#out.azp{padding-right:8px}}
 #out>.c{scroll-margin-top:72px}
 #out.cv .c{content-visibility:visible!important} /* clear of the sticky jump bar */
 /* quick jumps: a sticky row of the result sections at the top of the drinks; the one you're in is lit */
-/* painted with the page's own glows, pinned to the window like body::before, so it matches what's behind it; fades out at the bottom */
-.jb{position:sticky;top:0;z-index:4;grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 2px 18px;
- background:var(--bg-body);background-attachment:fixed;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+/* no background of its own (the owner asked): the pills float over the drinks as they scroll under */
+.jb{position:sticky;top:0;z-index:4;grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 2px 18px}
 .jb::-webkit-scrollbar{display:none}
 .jb .chip{flex:none;white-space:nowrap}
 /* section counts: gradient numbers in light mode, a gradient bubble in dark, a frosted bubble on the lit pill */
@@ -390,7 +394,7 @@ html[data-page="zero"] .tick,.tick[hidden]{display:none}
 .jb .chip.on small,:root[data-theme="dark"] .jb .chip small{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;margin-left:8px;border-radius:999px;font-weight:700;font-size:13px;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;background:var(--hot)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .jb .chip small{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;margin-left:8px;border-radius:999px;font-weight:700;font-size:13px;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;background:var(--hot)}}
 :root .jb .chip.on small{background:rgba(255,255,255,.24);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
-@media(max-width:600px){.jb{margin:0 -16px;padding:10px 16px}#out.azp>.jb{margin-right:-42px}}
+@media(max-width:600px){.jb{margin:0 -16px;padding:10px 16px}#out.azp>.jb{margin-right:-24px}}
 
 /* ===== Y2K skin: everything above is the layout; this block only restyles it ===== */
 :root{--sans:"Figtree",system-ui,sans-serif;--serif:"Bricolage Grotesque","Figtree",sans-serif;
@@ -541,8 +545,6 @@ h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.5
  .fav{width:44px;height:44px;margin:-8px -12px -8px -6px}
 }
 /* the wider touch strip needs more room beside the results (and the jump bar still runs to the edge) */
-@media(pointer:coarse) and (max-width:1180px){#out.azp{padding-right:38px}}
-@media(pointer:coarse) and (max-width:600px){#out.azp>.jb{margin-right:-54px}}
 
 /* ===== Motion: menus open, selections confirm. Curves and durations from the animate skill. ===== */
 :root{--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);interpolate-size:allow-keywords}
@@ -704,7 +706,6 @@ details[open]::details-content{block-size:auto;opacity:1;transition-duration:220
  :is(#azs,#oaz){display:grid!important;grid-auto-flow:column;grid-template-rows:repeat(var(--r,12),20px);max-block-size:none;padding:6px 4px;border-radius:18px}
  :is(#azs,#oaz) button{height:20px!important;min-width:30px!important;font-size:12px}
  .azw:has(#rsug .cg) #azs{top:12px}
- #out.azp{padding-right:76px}
 }
 /* ===== Accessibility settings (Menu): text size (WCAG 1.4.4), reduce motion (2.2.2, 2.3.3), higher contrast (1.4.3, 1.4.6, 1.4.11), underline links (1.4.1) ===== */
 /* text size scales the whole app: most sizes are fixed pixels, so scaling the root font alone would miss them */
@@ -858,7 +859,7 @@ html[data-calm] h1::after,html[data-calm] h1 .num{animation:none!important}
 </main>
 <a class="peek" id="peek" href="#out"><span id="peekt"></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></span><span id="toastt"></span><button class="chip" id="tundo" type="button" hidden>Undo</button><i class="tbar" aria-hidden="true"></i></div>
-<nav class="oaz" id="oaz" aria-label="Jump to a letter in the drinks"></nav>
+<nav class="oaz" id="oaz" tabindex="0" aria-label="Jump to a letter in the drinks"></nav>
 <a class="totop" id="totop" href="#" aria-label="Back to top"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 <script>
 // Language: English is written into the page; Spanish is applied on top. Text the page draws is translated as it lands (a MutationObserver):
@@ -2767,6 +2768,7 @@ function scrubber(nav,go){const at=(x,y)=>{let l=[...nav.children];const c=l.fil
  document.addEventListener('pointerdown',e=>{if(!e.composedPath().includes(nav))nav.querySelectorAll('.on').forEach(x=>x.classList.remove('on'))}); // the path, not contains(): a redraw may have replaced the tapped letter
  nav.onclick=e=>{const b=e.target.closest('[data-az]');if(b&&!e.detail)pick(b,1)}} // keyboard: Enter or Space on a letter
 scrubber($('azs'),l=>{const h=[...$('rsug').querySelectorAll('.cg')].find(x=>x.textContent===l);if(h)h.scrollIntoView({block:'start',behavior:'instant'})});
+$('oaz').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.focus()}); // a tap on the collapsed tab opens it (iOS doesn't focus on tap by itself)
 scrubber($('oaz'),(l,live)=>{if(!live)azReveal(l);const c=[...$('out').querySelectorAll(AZC)].find(b=>lt(b.dataset.fav)===l);if(!c)return;const go=()=>c.closest('.c').scrollIntoView({block:'start',behavior:'instant'});live?go():settle(go)});
 // Zero Proof shelf: its own picks (saved as zbar). With nothing ticked, every drink shows A–Z; with picks, Ready to make, One ingredient away, then the rest.
 const ZGR=[["Juices","lime juice,lemon juice,orange juice,pineapple juice,cranberry juice,grapefruit juice,lemonade,apple juice,apple cider,pear juice,passion fruit juice,peach nectar,peach purée,mango purée,blood orange juice,red grape juice,tomato juice,clamato,coconut water"],["Sodas & sparkling","club soda,ginger beer,ginger ale,cola,lemon-lime soda,tonic water,bitter lemon,sparkling grape juice,orange soda,grape soda,root beer,cream soda"],["Syrups & sweeteners","simple syrup,sugar,grenadine,agave nectar,honey,maple syrup,cream of coconut,orgeat syrup,blue curaçao syrup,rose syrup,lavender syrup,rosemary syrup,coconut syrup,butterscotch syrup,chocolate syrup,coffee syrup,flavored syrup"],["Fruit & herbs","mint leaves,basil,sage,ginger,strawberries,raspberries,blackberries,blueberries,cranberries,watermelon,mango,green mango,peach,banana,pineapple,apple,lime,cucumber,orange peel,mixed fruit,dried hibiscus,tamarind"],["Dairy, coffee & tea","milk,cream,sweetened condensed milk,evaporated milk,yogurt,vanilla ice cream,sherbet,egg yolk,espresso,cold brew,coffee,iced tea,thai tea,matcha"],["Spices & pantry","cinnamon,cloves,nutmeg,cardamom,cumin,black salt,celery salt,worcestershire sauce,hot sauce,horseradish,angostura bitters,apple cider vinegar,rice,pearl barley,purple corn,basil seeds"]];
