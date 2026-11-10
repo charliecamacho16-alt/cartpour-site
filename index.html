@@ -69,6 +69,8 @@
   .card span { color: var(--muted); font-size: 15px; }
   .zp { display: grid; gap: 32px; align-items: center; padding: 32px; border-radius: 28px; background: color-mix(in srgb, #0d9488 9%, var(--card)); border: 1px solid var(--edge); }
   @media (min-width: 760px) { .zp { grid-template-columns: 1fr 260px; } }
+  /* gradient text paints only inside the line box: room below so g, y and p keep their tails */
+  h1, .zp h2 { padding-bottom: .12em; }
   .zp h2 { background: var(--zp); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .zp img { width: 100%; max-width: 260px; margin: 0 auto; }
   details { border-bottom: 1px solid var(--rule); padding: 16px 0; }
