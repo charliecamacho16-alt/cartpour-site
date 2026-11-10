@@ -8,7 +8,10 @@ src = Path(sys.argv[1] if len(sys.argv) > 1 else '../extracted/bar-cart/bar-cart
 here = Path(__file__).parent
 html = src.read_text(encoding='utf-8')
 assert html.count('</head>') == 1, 'expected one </head>'
-head = ('<link rel="manifest" href="manifest.webmanifest">\n<link rel="apple-touch-icon" href="icon-192.png">\n'
+head = ('<meta name="description" content="Tick the bottles you own and see every cocktail you can pour tonight. 600+ recipes and 100 mocktails, free and offline.">\n'
+        '<link rel="canonical" href="https://cartpour.com/app/">\n<meta property="og:title" content="CartPour – cocktails from your shelf">\n'
+        '<meta property="og:image" content="https://cartpour.com/img/og.jpg">\n<meta name="twitter:card" content="summary_large_image">\n'
+        '<link rel="manifest" href="manifest.webmanifest">\n<link rel="apple-touch-icon" href="icon-192.png">\n'
         '<meta name="apple-mobile-web-app-capable" content="yes">\n'
         "<script>if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))</script>\n")
 html = html.replace('</head>', head + '</head>')

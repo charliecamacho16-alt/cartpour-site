@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found – CartPour</title>
+<meta name="description" content="This page isn't on the menu. Head back to CartPour to see what you can pour tonight.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<style>
+  :root { --ink: #1d1530; --muted: #5d5470; --ground: #f6f1ff; --link: #6d28d9; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #efe9fb; --muted: #b3a9c9; --ground: #0a0618; --link: #c4b5fd; } }
+  body { margin: 0; min-height: 100dvh; display: grid; place-items: center; text-align: center; padding: 32px 16px; box-sizing: border-box;
+    color: var(--ink); font: 17px/1.6 system-ui, sans-serif;
+    background: radial-gradient(70% 50% at 0 0, rgba(255,79,200,.24), transparent 70%), radial-gradient(60% 50% at 100% 10%, rgba(34,211,238,.2), transparent 70%), var(--ground); }
+  img { width: 64px; height: 64px; }
+  h1 { font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 16px 0 8px; }
+  p { color: var(--muted); margin: 0 0 24px; }
+  .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; color: #fff;
+    background: linear-gradient(120deg, #d6168f, #7c3aed 55%, #0e7490); }
+  .alt { display: block; margin-top: 16px; color: var(--link); }
+</style>
+</head>
+<body>
+<main>
+  <img src="/img/logo-64.png" alt="" width="64" height="64">
+  <h1>That page isn’t on the menu.</h1>
+  <p>It may have moved, or the link has a typo.</p>
+  <a class="btn" href="/app/">Open CartPour</a>
+  <a class="alt" href="/">Back to the home page</a>
+</main>
+</body>
+</html>
