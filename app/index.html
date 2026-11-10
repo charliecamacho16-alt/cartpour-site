@@ -483,6 +483,7 @@ h1 .num{display:inline-block;color:var(--accent);-webkit-text-fill-color:var(--a
 h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.55em;vertical-align:.6em;color:#22d3ee;-webkit-text-fill-color:#22d3ee;animation:twinkle 2.4s ease-in-out infinite}
 @keyframes twinkle{50%{opacity:.35;transform:scale(.8) rotate(20deg)}}
 .side,.fp,.c,.tabs,#settings,.mc,#bbox{background:var(--surface);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--border);box-shadow:var(--glass-shadow)}
+#settings{background:color-mix(in srgb,var(--ground) 94%,transparent)} /* nearly solid: the gradient tab pill showed through the glass as a pink smear behind the heading */
 .c,.mc{-webkit-backdrop-filter:none;backdrop-filter:none} /* dozens of blurred cards stutter on phones; they sit on a soft gradient, so the blur barely showed */
 .c{background:var(--raised)}.c.n{background:var(--surface)}
 #bout .c,#bbox{background:var(--raised)}
@@ -512,7 +513,7 @@ h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.5
 .c .hd::before{content:"";flex:none;width:36px;height:36px;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 4px 12px var(--glow);
  background:var(--glass) center/20px no-repeat,var(--hot)}
 /* the tile shows the drink's glass, picked from its steps by glass() */
-.c .hd{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1.4 12H6.4z M5.6 13h12.8 M9.5 14.5h3v3h-3z'/%3E%3C/svg%3E")}
+.c .hd{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 5l1.3 15h10.4L18.5 5 M6.2 12.5c2 .8 3.9.8 5.8 0s3.8-.8 5.8 0 M9 9.2l2.6-.9.9 2.6-2.6.9z M12.8 7.4l2.4.4-.4 2.4-2.4-.4z'/%3E%3C/svg%3E")}
 :is(.hd,.gi)[data-g="martini"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16l-8 9z M12 13v7 M8 20h8'/%3E%3C/svg%3E")}
 :is(.hd,.gi)[data-g="coupe"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h16c0 4.4-3.6 7-8 7s-8-2.6-8-7z M12 12v8 M8 20h8'/%3E%3C/svg%3E")}
 :is(.hd,.gi)[data-g="margarita"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4h18c0 2.6-2.4 4-5 4.4-.3 2.2-1.8 3.6-4 3.6s-3.7-1.4-4-3.6C5.4 8 3 6.6 3 4z M12 12v8 M8 20h8'/%3E%3C/svg%3E")}
@@ -522,7 +523,7 @@ h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.5
 :is(.hd,.gi)[data-g="shot"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.5 7h9l-1.3 13H8.8z M8.2 12h7.6'/%3E%3C/svg%3E")}
 :is(.hd,.gi)[data-g="tiki"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3h8c0 3-2.2 4.2-2.2 7.2 0 2.8 3.2 4 3.2 7.3V21H7v-3.5c0-3.3 3.2-4.5 3.2-7.3C10.2 7.2 8 6 8 3z'/%3E%3C/svg%3E")}
 :is(.hd,.gi)[data-g="highball"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3h10l-1.2 18H8.2z M7.6 10h8.8'/%3E%3C/svg%3E")}
-:is(.hd,.gi)[data-g="rocks"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1.4 12H6.4z M5.6 13h12.8 M9.5 14.5h3v3h-3z'/%3E%3C/svg%3E")}
+:is(.hd,.gi)[data-g="rocks"]{--glass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 5l1.3 15h10.4L18.5 5 M6.2 12.5c2 .8 3.9.8 5.8 0s3.8-.8 5.8 0 M9 9.2l2.6-.9.9 2.6-2.6.9z M12.8 7.4l2.4.4-.4 2.4-2.4-.4z'/%3E%3C/svg%3E")}
 .c ul{list-style:none;padding-left:0}
 .c ul>li{display:flex;justify-content:space-between;gap:12px;margin:0;padding:8px 0;border-bottom:1px solid var(--rule);color:var(--text)}
 .c ul>li:last-child{border-bottom:0}
