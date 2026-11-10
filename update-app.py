@@ -13,7 +13,9 @@ head = ('<meta name="description" content="Tick the bottles you own and see ever
         '<meta property="og:image" content="https://cartpour.com/img/og.jpg">\n<meta name="twitter:card" content="summary_large_image">\n'
         '<link rel="manifest" href="manifest.webmanifest">\n<link rel="apple-touch-icon" href="icon-192.png">\n'
         '<meta name="apple-mobile-web-app-capable" content="yes">\n'
-        "<script>if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))</script>\n")
+        "<script>if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))</script>\n"
+        # cookie-free page counts (GoatCounter); the Android app never loads this copy, so it stays untracked
+        '<script data-goatcounter="https://cart-pour.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>\n')
 html = html.replace('</head>', head + '</head>')
 (here / 'app' / 'index.html').write_text(html, encoding='utf-8')
 # a new cache name per page version, so a returning visitor gets the update on their next visit
