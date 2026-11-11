@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-ZbLdP048mJExVMZloiJP396b8IwgLYRZIemr5B1gXYU=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-XaCKXcT6i8i6WyykOOIJDibn+yez/wXC1xMWB8TVyR4=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CartPour</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff4fc8'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23g)'/%3E%3Cpath d='M7.5 8.5h13L14 15.5z' fill='white'/%3E%3Cpath d='M14 15.5v5.5M10.5 21h7' stroke='white' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -316,7 +316,7 @@ button.p.m::after{content:"+";margin-left:6px;font-weight:600}
 #azs{display:none}
 .azw:has(#rsug .cg){display:grid;grid-template-columns:1fr auto;gap:8px}
 /* condensed like the results strip: a short pill of letters, held near the middle of the screen */
-.azw:has(#rsug .cg) #azs{display:flex;flex-direction:column;position:sticky;top:max(16px,calc(50svh - 240px));align-self:start;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:none;user-select:none}
+.azw:has(#rsug .cg) #azs{display:flex;flex-direction:column;position:sticky;top:max(16px,calc(50svh - 240px));align-self:start;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:pan-y;user-select:none}
 #azs button{flex:none;height:17px}
 :is(#azs,#oaz) button{display:grid;place-items:center;flex:1;min-width:28px;padding:0;border:0;background:none;font:600 11px/1 var(--sans,inherit);color:var(--accent);cursor:pointer;border-radius:6px}
 :is(#azs,#oaz) button.on{color:#fff;background:var(--hot,var(--accent))}
@@ -380,7 +380,7 @@ html[data-page="zero"] .tick,.tick[hidden]{display:none}
 .tt button{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:0;background:none;color:#fff;font:600 15px var(--sans,inherit);white-space:nowrap;cursor:pointer}
 .tt button::after{content:"✦";margin-left:28px;opacity:.6;font-size:12px}
 /* the A-Z strip beside the results, while they are sorted by name; shows while the drinks are on screen */
-.oaz{position:fixed;z-index:3;right:4px;top:50%;translate:0 -50%;display:flex;flex-direction:column;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:none;user-select:none;opacity:0;visibility:hidden}
+.oaz{position:fixed;z-index:3;right:4px;top:50%;translate:0 -50%;display:flex;flex-direction:column;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:pan-y;user-select:none;opacity:0;visibility:hidden}
 #oaz button{flex:none;height:17px} /* condensed: a short column of letters centred on the right edge */
 /* collapsed to an "A–Z" tab so it does not sit over the cards; it opens on hover, on a tap (the nav takes focus) or with the keyboard */
 #oaz:not(:focus-within,:hover){right:0;padding:0;border-right:0;border-radius:14px 0 0 14px}
@@ -2827,9 +2827,19 @@ function scrubber(nav,go){const at=(x,y)=>{let l=[...nav.children];const c=l.fil
  // while dragging, go(l,true) only does the cheap part (live); the full jump runs once when the finger lifts
  let moved=0;const pick=(b,again,live)=>{if(!b||(!again&&b.classList.contains('on')))return;nav.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));b.classList.add('on');go(b.dataset.az,live);
   if(!b.isConnected)nav.querySelector(`[data-az="${b.dataset.az}"]`)?.classList.add('on')}; // revealing more cards redrew the strip: light the new letter
- nav.onpointerdown=e=>{if(!e.target.closest('[data-az]'))return;e.preventDefault();moved=0;nav.setPointerCapture(e.pointerId);pick(at(e.clientX,e.clientY),1)};
- nav.onpointermove=e=>{if(!nav.hasPointerCapture(e.pointerId))return;const b=at(e.clientX,e.clientY);if(b&&!b.classList.contains('on')){moved=1;pick(b,0,1)}};
- nav.onpointerup=nav.onpointercancel=()=>{if(!moved)return;moved=0;const b=nav.querySelector('.on');if(b)go(b.dataset.az)};
+ // touch: the strip sits where a thumb scrolls, so a quick swipe scrolls the page (touch-action:pan-y), a tap jumps, and a short
+ // hold (HOLD ms) then drag scrubs; mouse and pen scrub at once. Once scrubbing, the non-passive touchmove stops the page panning.
+ let held=0,hold=0,sx=0,sy=0;const HOLD=180,touch=e=>e.pointerType==='touch';
+ const end=()=>{held=0;if(!moved)return;moved=0;const b=nav.querySelector('.on');if(b)go(b.dataset.az)};
+ nav.onpointerdown=e=>{if(!e.target.closest('[data-az]'))return;moved=0;
+  if(!touch(e)){e.preventDefault();held=1;nav.setPointerCapture(e.pointerId);pick(at(e.clientX,e.clientY),1);return}
+  held=0;sx=e.clientX;sy=e.clientY;clearTimeout(hold);hold=setTimeout(()=>{held=1;nav.setPointerCapture(e.pointerId);pick(at(sx,sy),1)},HOLD)};
+ nav.addEventListener('touchmove',e=>{if(held)e.preventDefault()},{passive:false});
+ nav.onpointermove=e=>{if(!held){if(Math.hypot(e.clientX-sx,e.clientY-sy)>8)clearTimeout(hold);return}
+  if(!nav.hasPointerCapture(e.pointerId))return;const b=at(e.clientX,e.clientY);if(b&&!b.classList.contains('on')){moved=1;pick(b,0,1)}};
+ nav.onpointerup=e=>{clearTimeout(hold);if(touch(e)&&!held&&Math.hypot(e.clientX-sx,e.clientY-sy)<=8&&e.target.closest('[data-az]')){pick(at(e.clientX,e.clientY),1);return} // a tap
+  end()};
+ nav.onpointercancel=()=>{clearTimeout(hold);end()}; // the browser took the swipe as a scroll
  document.addEventListener('pointerdown',e=>{if(!e.composedPath().includes(nav))nav.querySelectorAll('.on').forEach(x=>x.classList.remove('on'))}); // the path, not contains(): a redraw may have replaced the tapped letter
  nav.onclick=e=>{const b=e.target.closest('[data-az]');if(b&&!e.detail)pick(b,1)}} // keyboard: Enter or Space on a letter
 // magnetic dock on the A–Z strips (after componentry's magnetic-dock, framer-motion springs done by hand): letters within D px of the
@@ -2845,7 +2855,8 @@ function dock(nav){const MAX=1.7,D=64,K=300,C=20,M=.5;let px=null,py=null,raf=0,
   raf=busy?requestAnimationFrame(step):(last=0,0)};
  const go=()=>{if(!raf)raf=requestAnimationFrame(step)};
  nav.addEventListener('pointermove',e=>{if(calm()||(e.pointerType!=='mouse'&&!nav.hasPointerCapture(e.pointerId)))return;px=e.clientX;py=e.clientY;go()});
- nav.addEventListener('pointerdown',e=>{if(calm())return;px=e.clientX;py=e.clientY;go()});
+ let p0=[0,0];nav.addEventListener('pointerdown',e=>{if(calm())return;p0=[e.clientX,e.clientY];if(e.pointerType!=='touch'){px=e.clientX;py=e.clientY;go()}});
+ nav.addEventListener('gotpointercapture',e=>{if(calm()||e.pointerType!=='touch')return;[px,py]=p0;go()}); // touch swells only once the hold starts a scrub
  const off=()=>{px=py=null;go()};['pointerleave','pointerup','pointercancel'].forEach(t=>nav.addEventListener(t,e=>{if(t==='pointerleave'&&nav.hasPointerCapture?.(e.pointerId))return;if(e.pointerType==='mouse'&&t!=='pointerleave')return;off()}));
  nav.addEventListener('lostpointercapture',e=>{if(e.pointerType!=='mouse')off()})}
 dock($('azs'));dock($('oaz'));
