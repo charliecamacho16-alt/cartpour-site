@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-Aj9/BHoesD4itmki3VxQLFwLYmt7fc58D7DkrLHLNEI=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-Ys8dQUjc42B9kzkrptLRhuhS4Vx2izkSh+3d1Uxhblw=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CartPour</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff4fc8'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23g)'/%3E%3Cpath d='M7.5 8.5h13L14 15.5z' fill='white'/%3E%3Cpath d='M14 15.5v5.5M10.5 21h7' stroke='white' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -320,7 +320,12 @@ button.p.m::after{content:"+";margin-left:6px;font-weight:600}
 #azs button{flex:none;height:17px}
 :is(#azs,#oaz) button{display:grid;place-items:center;flex:1;min-width:28px;padding:0;border:0;background:none;font:600 11px/1 var(--sans,inherit);color:var(--accent);cursor:pointer;border-radius:6px}
 :is(#azs,#oaz) button.on{color:#fff;background:var(--hot,var(--accent))}
-@media(hover:hover) and (pointer:fine){:is(#azs,#oaz) button:not(.on):hover{background:color-mix(in srgb,var(--accent) 22%,transparent)}}
+/* magnetic dock (after componentry's magnetic-dock): the letter (<i>) swells and bulges left near the pointer, set by dock();
+   the button keeps its size so the scrubber's hit-testing stays exact, and the picked letter's pill rides on the <i> */
+:is(#azs,#oaz) button i{display:grid;place-items:center;min-width:22px;height:22px;max-height:100%;padding:0 5px;font-style:normal;border-radius:99px;transform-origin:100% 50%}
+:is(#azs,#oaz) button.on{background:none}
+:is(#azs,#oaz) button.on i{background:var(--hot,var(--accent))}
+@media(hover:hover) and (pointer:fine){:is(#azs,#oaz) button:not(.on):hover i{background:color-mix(in srgb,var(--accent) 22%,transparent)}}
 #rsug .cg{scroll-margin-top:16px}
 
 /* Filters: one panel; flavor, theme and brand sit inside it as plain sections */
@@ -2500,7 +2505,7 @@ const AZC=':scope>.c [data-fav],:scope>.away[open] .c [data-fav]';let AZON=false
 const azLists=()=>AZL.filter(x=>{const d=document.querySelector(`#out details.away[data-d="${x.id}"]`);return !d||d.open});
 function azStrip(){const ls=[...new Set(azLists().flatMap(x=>x.n.map(lt)))].sort((a,b)=>(a==='#'?-1:b==='#'?1:a.localeCompare(b))*(dir==='za'?-1:1)),az=AZON&&ls.length>0;
  const lit=$('oaz').querySelector('.on')?.dataset.az; // a rebuild keeps the letter you picked lit
- $('out').classList.toggle('azp',az);$('oaz').innerHTML=az?ls.map(l=>`<button type="button" data-az="${l}" aria-label="${l}"${l===lit?' class="on"':''}>${l}</button>`).join(''):'';$('oaz').style.setProperty('--r',azRows(ls.length||1))}
+ $('out').classList.toggle('azp',az);$('oaz').innerHTML=az?ls.map(l=>`<button type="button" data-az="${l}" aria-label="${l}"${l===lit?' class="on"':''}><i>${l}</i></button>`).join(''):'';$('oaz').style.setProperty('--r',azRows(ls.length||1))}
 // make sure a card with letter l is on show: if none is, reveal just enough batches of the first list that has one
 function azReveal(l){if([...$('out').querySelectorAll(AZC)].some(b=>lt(b.dataset.fav)===l))return;
  for(const x of azLists()){const i=x.n.findIndex(n=>lt(n)===l);if(i<0)continue;let t=0;while(shown(t)<=i)t++;x.id==='more'?more=t:SHOW[x.id]=t;draw();return}}
@@ -2794,7 +2799,7 @@ function look(n,nav=n?'push':'replace'){if(n)rq.value=DB.find(c=>c.n===n).n;if(r
  $('recent').innerHTML=!v&&RECENT.length?'<p class="lab">Recently viewed</p><div class="row">'+RECENT.map(n=>`<button class="chip" data-r="${n}" translate="no">${n}</button>`).join('')+'</div>':'';
  let L; // the full list (nothing typed) is A–Z, so a letter heading goes in wherever the first letter changes; digits go under #
  $('rsug').innerHTML=m.filter(c=>c!==p).map(c=>{const k=lt(c.n);return(!v&&k!==L?`<p class="cg">${L=k}</p>`:'')+`<button class="chip" data-r="${c.n}" title="${c.n}" translate="no">${c.n}</button>`}).join('');
- $('azs').innerHTML=[...$('rsug').querySelectorAll('.cg')].map(h=>`<button type="button" data-az="${h.textContent}" aria-label="${h.textContent}">${h.textContent}</button>`).join('');$('azs').style.setProperty('--r',azRows($('azs').children.length));
+ $('azs').innerHTML=[...$('rsug').querySelectorAll('.cg')].map(h=>`<button type="button" data-az="${h.textContent}" aria-label="${h.textContent}"><i>${h.textContent}</i></button>`).join('');$('azs').style.setProperty('--r',azRows($('azs').children.length));
  $('rec').innerHTML=p?'<div class="c">'+recipe(p,1)+'</div>':(v&&!m.length?`<p class="mu">No cocktail matching “${v}” yet. Check the spelling, or try another name it goes by.</p>`:'');
  const h=p?'#r/'+slug(p.n):'';if(nav!=='none'&&h!==location.hash&&(h||location.hash.startsWith('#r/')))try{history[nav+'State'](null,'',h||location.pathname+location.search)}catch(e){} /* sandboxed frames (about:srcdoc) refuse URL changes */}
 rq.oninput=()=>look();
@@ -2813,6 +2818,23 @@ function scrubber(nav,go){const at=(x,y)=>{let l=[...nav.children];const c=l.fil
  nav.onpointerup=nav.onpointercancel=()=>{if(!moved)return;moved=0;const b=nav.querySelector('.on');if(b)go(b.dataset.az)};
  document.addEventListener('pointerdown',e=>{if(!e.composedPath().includes(nav))nav.querySelectorAll('.on').forEach(x=>x.classList.remove('on'))}); // the path, not contains(): a redraw may have replaced the tapped letter
  nav.onclick=e=>{const b=e.target.closest('[data-az]');if(b&&!e.detail)pick(b,1)}} // keyboard: Enter or Space on a letter
+// magnetic dock on the A–Z strips (after componentry's magnetic-dock, framer-motion springs done by hand): letters within D px of the
+// pointer or finger scale up to MAX and slide left; each eases on a spring (stiffness 300, damping 20, mass .5). Off with reduce motion.
+function dock(nav){const MAX=1.7,D=64,K=300,C=20,M=.5;let px=null,py=null,raf=0,last=0;const st=new WeakMap();
+ const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduce';
+ const step=now=>{const dt=Math.min(.032,(now-(last||now))/1000)||.016;last=now;let busy=0;
+  const f=nav.firstElementChild,l=nav.lastElementChild,wrap=f&&l&&Math.abs(f.getBoundingClientRect().left-l.getBoundingClientRect().left)>4; // wrapped into columns: swell in place, don't slide into the next column
+  for(const b of nav.children){const i=b.firstElementChild;if(!i)continue;let s=st.get(i)||{x:1,v:0};const r=b.getBoundingClientRect();
+   const t=px===null?1:1+(MAX-1)*Math.max(0,1-Math.hypot((px-(r.left+r.width/2))*2.5,py-(r.top+r.height/2))/D); // sideways counts 2.5×: when the strip wraps, only the column under the pointer swells
+   s.v+=((-K*(s.x-t))-C*s.v)/M*dt;s.x+=s.v*dt;if(Math.abs(s.x-t)>.002||Math.abs(s.v)>.01)busy=1;else{s.x=t;s.v=0}
+   st.set(i,s);i.style.transformOrigin=wrap?'50% 50%':'';i.style.transform=s.x===1?'':`translateX(${wrap?0:(1-s.x)*14}px) scale(${wrap?1+(s.x-1)*.6:s.x})`}
+  raf=busy?requestAnimationFrame(step):(last=0,0)};
+ const go=()=>{if(!raf)raf=requestAnimationFrame(step)};
+ nav.addEventListener('pointermove',e=>{if(calm()||(e.pointerType!=='mouse'&&!nav.hasPointerCapture(e.pointerId)))return;px=e.clientX;py=e.clientY;go()});
+ nav.addEventListener('pointerdown',e=>{if(calm())return;px=e.clientX;py=e.clientY;go()});
+ const off=()=>{px=py=null;go()};['pointerleave','pointerup','pointercancel'].forEach(t=>nav.addEventListener(t,e=>{if(t==='pointerleave'&&nav.hasPointerCapture?.(e.pointerId))return;if(e.pointerType==='mouse'&&t!=='pointerleave')return;off()}));
+ nav.addEventListener('lostpointercapture',e=>{if(e.pointerType!=='mouse')off()})}
+dock($('azs'));dock($('oaz'));
 scrubber($('azs'),l=>{const h=[...$('rsug').querySelectorAll('.cg')].find(x=>x.textContent===l);if(h)h.scrollIntoView({block:'start',behavior:'instant'})});
 $('oaz').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.focus()}); // a tap on the collapsed tab opens it (iOS doesn't focus on tap by itself)
 scrubber($('oaz'),(l,live)=>{if(!live)azReveal(l);const c=[...$('out').querySelectorAll(AZC)].find(b=>lt(b.dataset.fav)===l);if(!c)return;const go=()=>c.closest('.c').scrollIntoView({block:'start',behavior:'instant'});live?go():settle(go)});
