@@ -11,6 +11,19 @@ const STEPS = [ // bottle, ready, one bottle away, Ready to mix list
   ['triple sec', 7, 48, ['70 And Soda', 'Kamikaze', 'Margarita', 'Patrón Ranch Water', 'Vodka Gimlet', 'Vodka Soda', 'Vodka Soda with Lime']],
   ['orange juice', 10, 58, ['70 And Soda', 'Kamikaze', 'Margarita', 'Orange Crush', 'Patrón Ranch Water', 'Primavera Sunset', 'Screwdriver', 'Vodka Gimlet', 'Vodka Soda', 'Vodka Soda with Lime']],
 ];
+// The words around those numbers, in the page's language (the Spanish ones are the app's own, read from it in Spanish).
+// Drink names stay as the app shows them; the app keeps its English order in Spanish too.
+const ES = document.documentElement.lang.startsWith('es');
+const L = ES ? {
+  pour: 'Puedes servir ', one: ' bebida esta noche.', many: ' bebidas esta noche.', none: 'Aún no hay nada listo para servir.',
+  ask: '¿Qué tienes en tu barra?', tap: 'Toca las botellas que tienes.', away: n => `${n} bebidas más están a una botella.`,
+  ready: 'Listas para preparar', nothing: 'Nada todavía', more: n => `+${n} más`,
+  name: { 'Screwdriver': 'Destornillador', 'Vodka Soda': 'Vodka con soda', 'Vodka Soda with Lime': 'Vodka con soda y limón' },
+} : {
+  pour: 'You can pour ', one: ' drink tonight.', many: ' drinks tonight.', none: 'Nothing ready to pour yet.',
+  ask: 'What’s on your shelf?', tap: 'Tap the bottles you own.', away: n => `${n} more are one bottle away.`,
+  ready: 'Ready to mix', nothing: 'Nothing yet', more: n => `+${n} more`, name: {},
+};
 (() => {
   const $ = id => document.getElementById(id);
   const demo = $('demo');
@@ -25,18 +38,18 @@ const STEPS = [ // bottle, ready, one bottle away, Ready to mix list
     hl.textContent = '';
     if (ready) {
       const b = document.createElement('b'); b.textContent = ready; b.className = 'pop';
-      hl.append('You can pour ', b, ready === 1 ? ' drink tonight.' : ' drinks tonight.');
-    } else hl.textContent = k ? 'Nothing ready to pour yet.' : 'What’s on your shelf?';
-    sub.textContent = k ? `${away} more are one bottle away.` : 'Tap the bottles you own.';
+      hl.append(L.pour, b, ready === 1 ? L.one : L.many);
+    } else hl.textContent = k ? L.none : L.ask;
+    sub.textContent = k ? L.away(away) : L.tap;
     // newest drinks first, four rows, then "+N more"
     const order = [...now.filter(n => !before.includes(n)), ...now.filter(n => before.includes(n))];
-    rh.textContent = ready ? `Ready to mix · ${ready}` : 'Ready to mix';
-    rl.replaceChildren(...(order.length ? order.slice(0, 4) : ['Nothing yet']).map(n => {
-      const li = document.createElement('li'); li.textContent = n;
+    rh.textContent = ready ? `${L.ready} · ${ready}` : L.ready;
+    rl.replaceChildren(...(order.length ? order.slice(0, 4) : [L.nothing]).map(n => {
+      const li = document.createElement('li'); li.textContent = L.name[n] || n;
       if (!order.length) li.style.opacity = '.5'; else if (!before.includes(n)) li.className = 'new';
       return li;
     }));
-    rm.textContent = order.length > 4 ? `+${order.length - 4} more` : '';
+    rm.textContent = order.length > 4 ? L.more(order.length - 4) : '';
   };
 
   let k = STEPS.length, timer = 0; // the markup starts on the final frame
@@ -73,9 +86,9 @@ const STEPS = [ // bottle, ready, one bottle away, Ready to mix list
       if (k !== last) { last = k; chips.forEach((c, i) => c.classList.toggle('on', i < k));
         const [, ready, away] = k ? STEPS[k - 1] : ['', 0, 0];
         hl.textContent = '';
-        if (ready) { const b = document.createElement('b'); b.textContent = ready; hl.append('You can pour ', b, ready === 1 ? ' drink tonight.' : ' drinks tonight.'); }
-        else hl.textContent = k ? 'Nothing ready to pour yet.' : 'What’s on your shelf?';
-        sub.textContent = k ? `${away} more are one bottle away.` : 'Tap the bottles you own.'; }
+        if (ready) { const b = document.createElement('b'); b.textContent = ready; hl.append(L.pour, b, ready === 1 ? L.one : L.many); }
+        else hl.textContent = k ? L.none : L.ask;
+        sub.textContent = k ? L.away(away) : L.tap; }
     } else last = -1;
     if (step === 1) rows.forEach((x, i) => x.classList.toggle('on', i < Math.ceil(t * rows.length)));
     if (step === 2) lis.forEach((x, i) => x.classList.toggle('on', i < Math.ceil(t * lis.length)));

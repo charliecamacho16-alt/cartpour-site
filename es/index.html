@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CartPour – cócteles con lo que tienes</title>
+<meta name="description" content="Elige las botellas que tienes y CartPour te muestra todos los cócteles que puedes preparar esta noche. Más de 600 recetas y 100 mocktails. Gratis, funciona sin conexión y sin cuenta.">
+<link rel="canonical" href="https://cartpour.com/es/">
+<link rel="alternate" hreflang="en" href="https://cartpour.com/">
+<link rel="alternate" hreflang="es" href="https://cartpour.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://cartpour.com/">
+<script src="/js/lang.js"></script>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cartpour.com/es/">
+<meta property="og:site_name" content="CartPour">
+<meta property="og:locale" content="es_LA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="CartPour – cócteles con lo que tienes">
+<meta property="og:description" content="Elige las botellas que tienes y mira todos los cócteles que puedes preparar esta noche.">
+<meta property="og:image" content="https://cartpour.com/img/og.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:image:alt" content="CartPour: elige las botellas que tienes y mira todos los cócteles que puedes preparar esta noche">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f6f1ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0618" media="(prefers-color-scheme: dark)">
+<style>
+  :root { --ink: #1d1530; --muted: #5d5470; --ground: #f6f1ff; --card: rgba(255,255,255,.72); --edge: rgba(255,255,255,.95); --rule: rgba(76,29,149,.12); --link: #6d28d9;
+    --hot: linear-gradient(120deg, #d6168f, #7c3aed 55%, #0e7490); --zp: linear-gradient(120deg, #65a30d, #0d9488 55%, #d97706); }
+  @media (prefers-color-scheme: dark) { :root { --ink: #efe9fb; --muted: #b3a9c9; --ground: #0a0618; --card: rgba(255,255,255,.06); --edge: rgba(255,255,255,.14); --rule: rgba(255,255,255,.1); --link: #c4b5fd; } }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; color: var(--ink); background: var(--ground); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(70% 50% at 0 0, rgba(255,79,200,.26), transparent 70%), radial-gradient(60% 50% at 100% 10%, rgba(34,211,238,.22), transparent 70%), radial-gradient(70% 60% at 50% 100%, rgba(139,92,246,.2), transparent 70%); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  a { color: var(--link); }
+  /* header */
+  .top { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); background: color-mix(in srgb, var(--ground) 70%, transparent); border-bottom: 1px solid var(--rule); }
+  .top .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; margin-right: auto; }
+  .brand img { width: 32px; height: 32px; }
+  .top nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; }
+  .top nav { display: none; gap: 20px; }
+  @media (min-width: 760px) { .top nav { display: flex; } }
+  @media (hover: hover) { .top nav a:hover { color: var(--ink); } }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms; }
+  .btn:active { transform: scale(.96); }
+  .btn.p { background: var(--hot); color: #fff; box-shadow: 0 8px 24px rgba(124,58,237,.32); }
+  .btn.s { background: var(--card); color: var(--ink); border: 1px solid var(--edge); }
+  .top .lang { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; margin: 0 -6px; color: var(--muted); font-weight: 600; font-size: 15px; text-decoration: none; }
+  @media (hover: hover) { .top .lang:hover { color: var(--ink); } }
+  .top .btn { min-height: 40px; padding: 8px 18px; font-size: 15px; }
+  /* hero */
+  .hero { display: grid; gap: 32px; align-items: center; padding: 56px 0 40px; }
+  @media (min-width: 860px) { .hero { grid-template-columns: 1fr 360px; gap: 56px; padding: 80px 0 56px; } }
+  h1 { font-size: clamp(38px, 7vw, 64px); line-height: 1.04; letter-spacing: -.025em; margin: 0 0 18px;
+    background: linear-gradient(90deg, #4c1d95, #a3106f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  @media (prefers-color-scheme: dark) { h1 { background-image: linear-gradient(90deg, #f0abfc, #a5f3fc); } }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34ch; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .facts li { padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; background: var(--card); border: 1px solid var(--edge); }
+  .fine { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .zp img { border-radius: 22px; border: 1px solid var(--edge); box-shadow: 0 18px 44px rgba(76,29,149,.2); display: block; height: auto; }
+  /* hero phone: a drawn demo of the app (light, like the app), played by js/hero.js; the markup is the final frame */
+  .phone { position: relative; width: min(320px, 80vw); margin: 0 auto; aspect-ratio: 9 / 18.5; border-radius: 48px; padding: 11px; background: linear-gradient(160deg, #2a2140, #0b0718 60%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.14), inset 0 1px 0 rgba(255,255,255,.18), 0 30px 70px rgba(76,29,149,.35); }
+  .phone::before { content: ""; position: absolute; top: 21px; left: 50%; width: 84px; height: 22px; margin-left: -42px; border-radius: 99px; background: #0b0718; z-index: 2; }
+  .scr { height: 100%; border-radius: 38px; overflow: hidden; padding: 52px 16px 16px; color: #1d1530; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: radial-gradient(90% 50% at 0 0, #ffd3f3, transparent 70%), radial-gradient(80% 50% at 100% 0, #c6f1ff, transparent 70%), radial-gradient(90% 60% at 50% 100%, #e2d3ff, transparent 70%), #f6f1ff; }
+  .scr .bar { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; margin-bottom: 14px; }
+  .scr .bar img { width: 22px; height: 22px; }
+  .scr .hl { font-size: 22px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; min-height: 2.3em; color: #2a1a5e; }
+  .scr .hl b { display: inline-block; background: linear-gradient(120deg, #d6168f, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .scr .hl b.pop { animation: pop 420ms cubic-bezier(.34,1.56,.64,1); }
+  @keyframes pop { from { transform: scale(.6); opacity: .2; } }
+  .scr .sub { font-size: 13px; color: #5d5470; margin: 0 0 16px; min-height: 1.4em; }
+  .scr .lab { font-size: 12px; font-weight: 700; color: #5d5470; margin: 0 0 8px; }
+  .scr .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .scr .chip { padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: linear-gradient(180deg, #fff, #f0e8ff); border: 1px solid #cdbcff;
+    transition: color 200ms, background 200ms, transform 160ms cubic-bezier(.23,1,.32,1); }
+  .scr .chip.on { color: #fff; border-color: transparent; background: var(--hot); }
+  .scr .chip.tap { transform: scale(.92); }
+  .scr .ready { margin-top: 18px; padding: 12px 14px; border-radius: 18px; background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,255,255,.4)); border: 1px solid #fff;
+    box-shadow: 0 10px 26px rgba(91,33,182,.14); font-size: 13px; color: #5d5470; }
+  .scr .ready strong { display: block; font-size: 15px; color: #1d1530; margin-bottom: 4px; }
+  .scr .ready ul { list-style: none; margin: 0; padding: 0; }
+  .scr .ready li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid rgba(76,29,149,.1); color: #1d1530; font-weight: 600; }
+  .scr .ready li::before { content: ""; width: 18px; height: 18px; border-radius: 6px; flex: none; background: var(--hot); }
+  .scr .ready li.new { animation: rowin 380ms cubic-bezier(.23,1,.32,1); }
+  @keyframes rowin { from { opacity: 0; transform: translateY(-6px); } }
+  .scr .ready .more { display: block; padding-top: 6px; color: #6d28d9; font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .scr .hl b.pop, .scr .ready li.new { animation: none; } .scr .chip { transition: none; } }
+  /* sections */
+  section.blk { padding: 56px 0; border-top: 1px solid var(--rule); }
+  h2 { font-size: clamp(28px, 4.5vw, 40px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 10px; }
+  .kick { color: var(--muted); max-width: 60ch; margin: 0 0 32px; }
+  /* How it works story: the section pins below the header while you scroll through it, and the scroll plays a drawn phone
+     through the three steps (js/hero.js). The markup is step 1's first frame. Own class names: the hero owns .phone and .scr */
+  #story { position: relative; height: 330vh; }
+  #story .stage { position: sticky; top: 64px; height: calc(100vh - 64px); height: calc(100svh - 64px); display: grid; align-items: center; gap: 16px 48px; padding: 16px; max-width: 1080px; margin: 0 auto; }
+  @media (min-width: 760px) { #story .stage { grid-template-columns: 340px 1fr; } }
+  @media (max-width: 759px) { #story .stage { grid-template-rows: auto 1fr; align-content: start; } }
+  #story .rail { display: flex; gap: 6px; margin: 0 0 18px; }
+  #story .rail i { flex: 1; height: 4px; border-radius: 9px; background: var(--rule); overflow: hidden; position: relative; }
+  #story .rail b { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0); background: var(--hot); }
+  #story .words { position: relative; min-height: 210px; }
+  #story .sw { position: absolute; inset: 0 auto auto 0; opacity: 0; transform: translateY(16px); transition: opacity 300ms, transform 360ms cubic-bezier(.23,1,.32,1); }
+  #story .sw.on { opacity: 1; transform: none; }
+  #story .sw small { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; background: var(--hot); font: 700 14px system-ui, sans-serif; margin-bottom: 10px; }
+  #story .sw h3 { font-size: clamp(26px, 3.6vw, 38px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 8px; }
+  #story .sw p { color: var(--muted); margin: 0; max-width: 40ch; }
+  @media (max-width: 759px) { #story .words { min-height: 170px; } #story .sw h3 { font-size: 24px; } #story .sw p { font-size: 15px; } }
+  #story .sphone { position: relative; width: min(320px, 78vw); margin: 0 auto; aspect-ratio: 9 / 18.5; border-radius: 48px; padding: 11px; background: linear-gradient(160deg, #2a2140, #0b0718 60%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.14), inset 0 1px 0 rgba(255,255,255,.18), 0 30px 70px rgba(76,29,149,.3); }
+  @media (max-width: 759px) { #story .sphone { width: min(230px, 58vw); } }
+  #story .sphone::before { content: ""; position: absolute; top: 21px; left: 50%; width: 84px; height: 22px; margin-left: -42px; border-radius: 99px; background: #0b0718; z-index: 3; }
+  #story .sscr { position: relative; height: 100%; border-radius: 38px; overflow: hidden; color: #1d1530; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: radial-gradient(90% 50% at 0 0, #ffd3f3, transparent 70%), radial-gradient(80% 50% at 100% 0, #c6f1ff, transparent 70%), radial-gradient(90% 60% at 50% 100%, #e2d3ff, transparent 70%), #f6f1ff; }
+  #story .view { position: absolute; inset: 0; padding: 52px 16px 16px; opacity: 0; transform: translateX(14px); transition: opacity 320ms, transform 420ms cubic-bezier(.23,1,.32,1); }
+  #story .view.on { opacity: 1; transform: none; }
+  #story .bar { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; margin-bottom: 12px; }
+  #story .bar img { width: 22px; height: 22px; }
+  #story .hl { font-size: 21px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; min-height: 2.3em; color: #2a1a5e; }
+  #story .hl b { background: linear-gradient(120deg, #d6168f, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #story .sub { font-size: 13px; color: #5d5470; margin: 0 0 14px; }
+  #story .lab { font-size: 12px; font-weight: 700; color: #5d5470; margin: 0 0 8px; }
+  #story .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  #story .chip { padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: linear-gradient(180deg, #fff, #f0e8ff); border: 1px solid #cdbcff; transition: color 200ms, background 200ms; }
+  #story .chip.on { color: #fff; border-color: transparent; background: var(--hot); }
+  #story .row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; margin-bottom: 7px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45)); border: 1px solid #fff;
+    box-shadow: 0 6px 16px rgba(91,33,182,.1); font-weight: 650; font-size: 14px; opacity: 0; transform: translateY(10px); transition: opacity 260ms, transform 320ms cubic-bezier(.23,1,.32,1); }
+  #story .row.on { opacity: 1; transform: none; }
+  #story .row::before { content: ""; width: 22px; height: 22px; border-radius: 7px; flex: none; background: var(--hot); }
+  #story .rc .t { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; margin: 0 0 2px; }
+  #story .rc .t::before { content: ""; width: 32px; height: 32px; border-radius: 10px; background: var(--hot); }
+  #story .rc .fl { font-size: 13px; color: #5d5470; margin: 0 0 12px; }
+  #story .rc ul, #story .rc ol { margin: 0 0 10px; padding-left: 20px; font-size: 13.5px; }
+  #story .rc li { opacity: 0; transform: translateX(-6px); transition: opacity 240ms, transform 300ms cubic-bezier(.23,1,.32,1); margin-bottom: 4px; }
+  #story .rc li.on { opacity: 1; transform: none; }
+  #story .rc .h { font-size: 12px; font-weight: 700; color: #6d28d9; margin: 0 0 4px; }
+  @media (prefers-reduced-motion: reduce) { #story .sw, #story .view, #story .row, #story .rc li, #story .chip { transition: none; } }
+  .grid { display: grid; gap: 14px; }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .card { padding: 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--edge); }
+  .card b { display: block; font-size: 17px; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 15px; }
+  .zp { display: grid; gap: 32px; align-items: center; padding: 32px; border-radius: 28px; background: color-mix(in srgb, #0d9488 9%, var(--card)); border: 1px solid var(--edge); }
+  @media (min-width: 760px) { .zp { grid-template-columns: 1fr 260px; } }
+  /* gradient text paints only inside the line box: room below so g, y and p keep their tails */
+  h1, .zp h2 { padding-bottom: .12em; }
+  .zp h2 { background: var(--zp); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .zp img { width: 100%; max-width: 260px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+  details:first-of-type { border-top: 1px solid var(--rule); }
+  summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--link); font-size: 22px; line-height: 1; transition: transform 200ms cubic-bezier(.23,1,.32,1); }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); margin: 10px 0 0; max-width: 70ch; }
+  .end { text-align: center; padding: 64px 0; border-top: 1px solid var(--rule); }
+  .end .ctas { justify-content: center; }
+  footer { border-top: 1px solid var(--rule); padding: 24px 0 40px; color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  /* footer wordmark: outlined letters fill with the gradient on hover (CSS), a finger slide or once on arrival (js/hero.js) */
+  .word { display: flex; justify-content: center; margin: 0 0 24px; font: 900 clamp(52px, 15vw, 190px)/1 system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: -.01em; user-select: none; touch-action: pan-y; }
+  .word span { position: relative; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 30%, transparent); background: var(--hot); -webkit-background-clip: text; background-clip: text;
+    background-size: 0% 100%; background-repeat: no-repeat; transition: background-size 380ms cubic-bezier(.23,1,.32,1), transform 260ms cubic-bezier(.23,1,.32,1), -webkit-text-stroke-color 260ms; }
+  .word span.on { background-size: 100% 100%; -webkit-text-stroke-color: transparent; transform: translateY(-.06em); }
+  @media (hover: hover) and (pointer: fine) { .word span:hover { background-size: 100% 100%; -webkit-text-stroke-color: transparent; transform: translateY(-.06em); } }
+  @media (prefers-reduced-motion: reduce) { .word span { transition: none; } .word span.on, .word span:hover { transform: none; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#"><img src="/img/logo-64.png" alt="" width="32" height="32"><span translate="no">CartPour</span></a>
+  <nav aria-label="Secciones"><a href="#how">Cómo funciona</a><a href="#features">Funciones</a><a href="#zero">Sin Alcohol</a><a href="#faq">Preguntas</a></nav>
+  <a class="lang" href="/" hreflang="en" lang="en" aria-label="English">EN</a>
+  <a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a>
+</div></header>
+
+<main>
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Cócteles con las botellas que ya tienes.</h1>
+      <p class="lead">Elige tus botellas. <span translate="no">CartPour</span> te muestra todas las bebidas que puedes preparar esta noche, y la botella que más opciones te abre.</p>
+      <div class="ctas"><a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a></div>
+      <ul class="facts"><li>Más de 600 cócteles</li><li>100 mocktails</li><li>Gratis</li><li>Funciona sin conexión</li></ul>
+      <p class="fine">La app para Android llega pronto a Google Play.</p>
+    </div>
+    <div class="phone" role="img" aria-label="Demostración de CartPour: al elegir seis botellas pasas de ninguna bebida a 10 listas para servir">
+      <div class="scr" id="demo" aria-hidden="true">
+        <div class="bar"><img src="/img/logo-64.png" alt="" width="22" height="22"><span translate="no">CartPour</span></div>
+        <p class="hl" id="dhl">Puedes servir <b>10</b> bebidas esta noche.</p>
+        <p class="sub" id="dsub">58 bebidas más están a una botella.</p>
+        <p class="lab">Tu estante</p>
+        <div class="chips" id="dchips"><span class="chip on">vodka</span><span class="chip on">agua con gas</span><span class="chip on">jugo de limón</span><span class="chip on">tequila</span><span class="chip on">triple sec</span><span class="chip on">jugo de naranja</span><span class="chip">ginebra</span><span class="chip">ron</span></div>
+        <div class="ready"><strong id="drh">Listas para preparar · 10</strong><ul id="drl"><li>Orange Crush</li><li>Primavera Sunset</li><li>Destornillador</li><li>70 And Soda</li></ul><span class="more" id="drm">+6 más</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="blk" id="how"><div class="wrap">
+  <h2>Cómo funciona</h2>
+  <p class="kick">Tres toques entre “¿qué hay en el bar de la casa?” y una bebida en tu mano.</p>
+</div>
+<div id="story">
+  <div class="stage">
+    <div class="sphone" role="img" aria-label="CartPour paso a paso: eliges seis botellas, ves las diez bebidas que puedes preparar y la receta de la Margarita">
+      <div class="sscr" aria-hidden="true">
+        <div class="view on"><div class="bar"><img src="/img/logo-64.png" alt="" width="22" height="22"><span translate="no">CartPour</span></div>
+          <p class="hl">¿Qué tienes en tu barra?</p><p class="sub">Toca las botellas que tienes.</p><p class="lab">Tu estante</p>
+          <div class="chips"><span class="chip">vodka</span><span class="chip">agua con gas</span><span class="chip">jugo de limón</span><span class="chip">tequila</span><span class="chip">triple sec</span><span class="chip">jugo de naranja</span><span class="chip">ginebra</span><span class="chip">ron</span></div></div>
+        <div class="view"><div class="bar"><img src="/img/logo-64.png" alt="" width="22" height="22"><span translate="no">CartPour</span></div><p class="hl">Listas para preparar · <b>10</b></p>
+          <div class="row">70 And Soda</div><div class="row">Kamikaze</div><div class="row">Margarita</div><div class="row">Orange Crush</div><div class="row">Patrón Ranch Water</div><div class="row">Primavera Sunset</div><div class="row">Destornillador</div></div>
+        <div class="view rc"><div class="bar"><img src="/img/logo-64.png" alt="" width="22" height="22"><span translate="no">CartPour</span></div><p class="t">Margarita</p><p class="fl">Cítrico · Ácido · Refrescante</p>
+          <p class="h">Ingredientes</p><ul><li>1⅔ oz (50 ml) de tequila</li><li>⅔ oz (20 ml) de triple sec</li><li>½ oz (15 ml) de jugo de limón</li><li>Decoración: sal o Tajín</li></ul>
+          <p class="h">Pasos</p><ol><li>Pon todo en una coctelera con hielo.</li><li>Agita bien y cuela en una copa coupé fría.</li><li>Escarcha con sal la mitad del borde si quieres.</li></ol></div>
+      </div>
+    </div>
+    <div>
+      <div class="rail" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+      <div class="words">
+        <div class="sw on"><small>1</small><h3>Elige tus botellas</h3><p>Escríbelas o tócalas en los estantes. “Scotch” y “bourbon” cuentan como whisky, y el limón cuenta como jugo de limón.</p></div>
+        <div class="sw"><small>2</small><h3>Mira qué puedes preparar</h3><p>Primero las que ya están listas, luego las que están a uno o dos ingredientes. Toca “falta X +” para agregar una botella que acabas de comprar.</p></div>
+        <div class="sw"><small>3</small><h3>Sírvelo</h3><p>Medidas, pasos y la copa correcta. Cambia entre oz y ml, o prepara dos o cuatro a la vez.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="blk" id="features"><div class="wrap">
+  <h2>Todo para el bar de tu casa</h2>
+  <p class="kick">Hecho para bares caseros de verdad: media botella de vermut, unos limones y lo que quedó de la última fiesta.</p>
+  <div class="grid">
+    <div class="card"><b>Más de 600 cócteles</b><span>Clásicos de la IBA, favoritos modernos y recetas de las propias marcas, cada uno con su origen.</span></div>
+    <div class="card"><b>La mejor próxima botella</b><span>Mira qué botella te abre más bebidas nuevas antes de tu próxima ida a la licorería.</span></div>
+    <div class="card"><b>Busca por sabor o tema</b><span>Frutal, amargo, herbal… o Halloween, Navidad y bebidas de películas y series.</span></div>
+    <div class="card"><b>Prepara por marca</b><span>Elige una botella que tengas y mira las recetas que recomiendan sus fabricantes.</span></div>
+    <div class="card"><b>Favoritos y enlaces</b><span>Marca con estrella las bebidas que te encantan y comparte cualquier receta con un enlace.</span></div>
+    <div class="card"><b>Privado y sin conexión</b><span>Sin cuenta, sin anuncios, sin cookies. Tu estante se queda en tu dispositivo.</span></div>
+  </div>
+</div></section>
+
+<section class="blk" id="zero"><div class="wrap">
+  <div class="zp">
+    <div>
+      <h2>¿No vas a beber? Prueba Sin Alcohol.</h2>
+      <p class="kick" style="margin-bottom:20px">100 mocktails con su propio estante de jugos, refrescos y jarabes: Shirley Temple, Virgin Mojito, Arnold Palmer, Rock Shandy y muchos más. La misma idea: elige lo que tienes y mira qué puedes preparar.</p>
+      <a class="btn s" href="/app/">Abrir <span translate="no">CartPour</span></a>
+      <p class="fine">En la app, toca el título <span translate="no">CartPour</span> y elige Sin Alcohol.</p>
+    </div>
+    <img src="/img/phone-4-zero-proof.webp" alt="Página Sin Alcohol con mocktails listos para preparar" loading="lazy" width="1080" height="2100">
+  </div>
+</div></section>
+
+<section class="blk" id="faq"><div class="wrap">
+  <h2>Preguntas</h2>
+  <p class="kick">Las respuestas cortas.</p>
+  <details><summary>¿Es gratis?</summary><p>Sí. Sin anuncios, sin suscripción y sin compras dentro de la app.</p></details>
+  <details><summary>¿Necesito una cuenta?</summary><p>No. No hay nada que registrar. Tu estante, tus favoritos y tus ajustes se guardan en tu navegador o en la app de tu dispositivo, y en ningún otro lugar.</p></details>
+  <details><summary>¿Funciona en iPhone?</summary><p>Sí, en el navegador. Abre la app en Safari, toca Compartir y luego “Agregar a pantalla de inicio”; así se abre como una app y funciona sin conexión. La app para Android llega pronto a Google Play.</p></details>
+  <details><summary>¿Funciona sin internet?</summary><p>Sí. Todas las recetas vienen incluidas. Una vez que abres la app web (o la instalas), sigue funcionando sin conexión.</p></details>
+  <details><summary>¿Está en español?</summary><p>Sí. Se abre en español si tu navegador está en español, y puedes cambiarlo en Ajustes → Idioma. Algunas de las etiquetas más nuevas todavía están en inglés.</p></details>
+  <details><summary>¿Para quién es?</summary><p>Para adultos con la edad legal para beber en su país, y para cualquiera que quiera un buen mocktail. Bebe con moderación.</p></details>
+</div></section>
+
+<section class="end"><div class="wrap">
+  <h2>¿Qué puedes servir esta noche?</h2>
+  <p class="kick" style="margin:0 auto 24px">Descúbrelo en unos diez segundos.</p>
+  <div class="ctas"><a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a></div>
+</div></section>
+</main>
+
+<footer><div class="word" aria-hidden="true" translate="no"><span>C</span><span>a</span><span>r</span><span>t</span><span>P</span><span>o</span><span>u</span><span>r</span></div><div class="wrap"><span>© 2026 <span translate="no">CartPour</span></span><a href="/privacy/" hreflang="en">Política de privacidad (en inglés)</a><a href="/terms/" hreflang="en">Términos de uso (en inglés)</a><a href="mailto:main@cartpour.com">main@cartpour.com</a><span>Para adultos con la edad legal para beber. Bebe con moderación.</span></div></footer>
+<script src="/js/hero.js" defer></script>
+<script data-goatcounter="https://cart-pour.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

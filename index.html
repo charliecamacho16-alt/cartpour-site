@@ -7,11 +7,17 @@
 <title>CartPour – cocktails from your shelf</title>
 <meta name="description" content="Select the bottles you own and CartPour shows every cocktail you can make tonight. 600+ recipes and 100 mocktails. Free, works offline, no account.">
 <link rel="canonical" href="https://cartpour.com/">
+<link rel="alternate" hreflang="en" href="https://cartpour.com/">
+<link rel="alternate" hreflang="es" href="https://cartpour.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://cartpour.com/">
+<script src="/js/lang.js"></script>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cartpour.com/">
 <meta property="og:site_name" content="CartPour">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_LA">
 <meta property="og:title" content="CartPour – cocktails from your shelf">
 <meta property="og:description" content="Select the bottles you own and see every cocktail you can make tonight.">
 <meta property="og:image" content="https://cartpour.com/img/og.jpg">
@@ -46,6 +52,8 @@
   .btn:active { transform: scale(.96); }
   .btn.p { background: var(--hot); color: #fff; box-shadow: 0 8px 24px rgba(124,58,237,.32); }
   .btn.s { background: var(--card); color: var(--ink); border: 1px solid var(--edge); }
+  .top .lang { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; margin: 0 -6px; color: var(--muted); font-weight: 600; font-size: 15px; text-decoration: none; }
+  @media (hover: hover) { .top .lang:hover { color: var(--ink); } }
   .top .btn { min-height: 40px; padding: 8px 18px; font-size: 15px; }
   /* hero */
   .hero { display: grid; gap: 32px; align-items: center; padding: 56px 0 40px; }
@@ -173,6 +181,7 @@
 <header class="top"><div class="wrap">
   <a class="brand" href="#"><img src="img/logo-64.png" alt="" width="32" height="32"><span translate="no">CartPour</span></a>
   <nav aria-label="Sections"><a href="#how">How it works</a><a href="#features">Features</a><a href="#zero">Zero Proof</a><a href="#faq">FAQ</a></nav>
+  <a class="lang" href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a>
   <a class="btn p" href="/app/">Open <span translate="no">CartPour</span></a>
 </div></header>
 
@@ -261,7 +270,7 @@
   <details><summary>Do I need an account?</summary><p>No. There is nothing to sign up for. Your shelf, favorites and settings are saved in your browser or the app on your device, and nowhere else.</p></details>
   <details><summary>Does it work on iPhone?</summary><p>Yes, in the browser. Open the app in Safari, tap Share, then “Add to Home Screen”; it then opens like an app and works offline. The Android app is coming to Google Play.</p></details>
   <details><summary>Does it work without internet?</summary><p>Yes. Every recipe is built in. Once you have opened the web app (or installed it), it keeps working offline.</p></details>
-  <details><summary>Is there a Spanish version?</summary><p>Yes: Settings → Language → Español. A few of the newest labels are still in English.</p></details>
+  <details><summary>Is there a Spanish version?</summary><p>Yes. It opens in Spanish when your browser is set to Spanish, or pick Settings → Language → Español. A few of the newest labels are still in English.</p></details>
   <details><summary>Who is it for?</summary><p>Adults of legal drinking age where they live, and anyone who wants a good mocktail. Please drink responsibly.</p></details>
 </div></section>
 
