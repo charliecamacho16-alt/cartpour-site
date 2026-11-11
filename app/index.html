@@ -216,7 +216,8 @@ h3{font-size:18px;font-weight:600;line-height:1.3}
 .mpill .menu+.menu{border-radius:0 999px 999px 0}.mpill .menu:first-child{border-radius:999px 0 0 999px}
 #settings[data-v="fav"] #setd,#settings[data-v="set"] #favd{display:none}
 #bar h2 small{margin-left:6px;font:600 15px var(--sans);color:var(--muted);letter-spacing:0} /* the bottle count beside "Your bar" */
-.steps .lk{margin:0;padding:0} /* "Try Zero Proof" sits inline in the fourth step */
+.steps .lk{margin:0;padding:0}
+#nb{display:block;margin-top:6px}#nb .lk{margin:0;padding:6px 0;font-weight:600;text-align:left} /* the best next bottle, under the headline */ /* "Try Zero Proof" sits inline in the fourth step */
 .jb .jbbar{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text)}.jb .jbbar svg{width:15px;height:15px}
 @media(min-width:1000px){.jb .jbbar{display:none}} /* the bar is beside the drinks there */
 /* accent roles: gradient pink for actions and selections; links and labels in violet; "needs" pills outlined (the Zero Proof page keeps its own accent) */
@@ -346,6 +347,9 @@ button.p.m::after{content:"+";margin-left:6px;font-weight:600}
 .toast.undo{overflow:hidden;padding:12px 12px 16px 14px;font-size:16px;background:var(--hot,linear-gradient(135deg,#d6168f,#7c3aed,#0e7490));box-shadow:0 14px 34px rgba(124,58,237,.45),inset 0 1px 0 rgba(255,255,255,.4)}
 .toast.undo .ti{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:999px;background:rgba(255,255,255,.18)}
 .toast.undo .ti svg{width:18px;height:18px}
+.toast.go.undo .ti,.toast.go.undo .tbar{display:none} /* the first-bottle note: small, light and quiet; no undo arrow or countdown */
+.toast.go.undo{width:fit-content;margin:0;border-radius:999px;padding:6px 6px 6px 16px;gap:10px;font-size:14px;font-weight:500;color:var(--text);background:var(--raised);border:1px solid var(--border);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 6px 18px rgba(91,33,182,.14)}
+.toast.go.undo #tundo{min-height:36px;padding:6px 14px;border-radius:999px;font-size:14px;font-weight:600;color:#fff;background:var(--hot);border:0;box-shadow:none}
 .toast.undo #tundo{min-height:40px;padding:8px 18px;border:0;background:#fff;color:#4c1d95;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.18)}
 .toast.undo .tbar{display:block;position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.85);transform-origin:left;animation:tbar var(--d,6s) linear forwards}
 @keyframes tbar{to{transform:scaleX(0)}}
@@ -386,7 +390,8 @@ html[data-page="zero"] .tick,.tick[hidden]{display:none}
 #out.cv .c{content-visibility:visible!important} /* clear of the sticky jump bar */
 /* quick jumps: a sticky row of the result sections at the top of the drinks; the one you're in is lit */
 /* no background of its own (the owner asked): the pills float over the drinks as they scroll under */
-.jb{position:sticky;top:0;z-index:4;grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 2px 18px}
+.jb{position:sticky;top:0;z-index:4;grid-column:1/-1;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 2px 18px;
+ -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)} /* blur, no tint: text under it softens instead of colliding */
 .jb::-webkit-scrollbar{display:none}
 .jb .chip{flex:none;white-space:nowrap}
 /* section counts: gradient numbers in light mode, a gradient bubble in dark, a frosted bubble on the lit pill */
@@ -893,12 +898,18 @@ const ES={
 // zero proof
 "Non-alcoholic drinks: all the flavor, none of the proof.":"Bebidas sin alcohol: todo el sabor, nada de alcohol.","Your shelf":"Tu estante","Tick what you have for mocktails. Water and ice are assumed. This shelf is separate from the bar.":"Marca lo que tienes para mocktails. Se cuenta con agua y hielo. Este estante es independiente de la barra.","Search, e.g. mint or ginger…":"Busca, p. ej. menta o jengibre…","Search Zero Proof drinks":"Buscar bebidas sin alcohol","Ready to make":"Listas para preparar","Everything else":"Todo lo demás","No drinks match that. Try one word, like an ingredient.":"Ninguna bebida coincide. Prueba con una palabra, como un ingrediente.","Juices":"Jugos","Sodas & sparkling":"Refrescos y burbujas","Syrups & sweeteners":"Jarabes y endulzantes","Fruit & herbs":"Frutas y hierbas","Dairy, coffee & tea":"Lácteos, café y té","Spices & pantry":"Especias y despensa",
 // November 2026 additions (strips, quick jumps, accessibility, first-open steps)
-"Accessibility":"Accesibilidad","Text size":"Tamaño del texto","Default":"Predeterminado","Large":"Grande","Largest":"Muy grande","Reduce motion":"Reducir movimiento","Higher contrast":"Más contraste","Underline links":"Subrayar enlaces","Calm decorations":"Decoraciones en calma","Favorites and settings":"Favoritos y ajustes","Famous drinks":"Bebidas famosas","Filters":"Filtros","Flavor":"Sabor","Brand":"Marca","Narrow the drinks by flavor or theme, or see a brand’s own cocktails.":"Filtra las bebidas por sabor o temática, o mira los cócteles propios de una marca.","Where each drink was first made, as far as the records show. “(likely)” marks an origin that is disputed or not certain.":"Dónde se preparó cada bebida por primera vez, según los registros. “(probable)” marca un origen disputado o incierto.","Most used":"Más usados","Ready now":"Listas ahora","See all":"Ver todas","Show more":"Mostrar más","Ready":"Listas","Next buys":"Próximas compras","One away":"A uno","Two away":"A dos","More":"Más","How to make it":"Cómo se prepara","Share recipe":"Compartir receta","Copy shopping list":"Copiar lista de compras","Undo":"Deshacer","Undo for 6 seconds":"Deshacer durante 6 segundos","Search":"Buscar","Shuffle":"Al azar","Type a bottle, like gin, or tap it on a shelf below.":"Escribe una botella, como ginebra, o tócala en un estante de abajo.","Type or tick your bottles":"Escribe o marca tus botellas","See what you can make":"Mira qué puedes preparar","Tap a drink for the recipe":"Toca una bebida para ver la receta","Not drinking?":"¿No bebes?","Try Zero Proof":"Prueba Sin Alcohol","Not drinking tonight?":"¿No bebes esta noche?","Try Zero Proof mocktails":"Prueba los mocktails Sin Alcohol","Ice and water are assumed.":"Se cuenta con hielo y agua.","Picks from drinks you can make, when your bar has any":"Elige entre las bebidas que puedes preparar, cuando tu barra tenga alguna","Jump to a section":"Ir a una sección","Jump to a spirit":"Ir a un destilado","Jump to a glass":"Ir a un vaso","Jump to a country":"Ir a un país","Jump to a letter in the drinks":"Ir a una letra de las bebidas","USA":"EE. UU.","UK":"R. U.",
+"Accessibility":"Accesibilidad","Text size":"Tamaño del texto","Default":"Predeterminado","Large":"Grande","Largest":"Muy grande","Reduce motion":"Reducir movimiento","Higher contrast":"Más contraste","Underline links":"Subrayar enlaces","Calm decorations":"Decoraciones en calma","Favorites and settings":"Favoritos y ajustes","Famous drinks":"Bebidas famosas","Filters":"Filtros","Flavor":"Sabor","Brand":"Marca","Narrow the drinks by flavor or theme, or see a brand’s own cocktails.":"Filtra las bebidas por sabor o temática, o mira los cócteles propios de una marca.","Where each drink was first made, as far as the records show. “(likely)” marks an origin that is disputed or not certain.":"Dónde se preparó cada bebida por primera vez, según los registros. “(probable)” marca un origen disputado o incierto.","Most used":"Más usados","Ready now":"Listas ahora","See all":"Ver todas","Show more":"Mostrar más","Ready":"Listas","Next buys":"Próximas compras","One away":"A uno","Two away":"A dos","More":"Más","How to make it":"Cómo se prepara","Share recipe":"Compartir receta","Copy shopping list":"Copiar lista de compras","Undo":"Deshacer","See them":"Verlas","Undo for 6 seconds":"Deshacer durante 6 segundos","Search":"Buscar","Shuffle":"Al azar","Type a bottle, like gin, or tap it on a shelf below.":"Escribe una botella, como ginebra, o tócala en un estante de abajo.","Type or tick your bottles":"Escribe o marca tus botellas","See what you can make":"Mira qué puedes preparar","Tap a drink for the recipe":"Toca una bebida para ver la receta","Not drinking?":"¿No bebes?","Try Zero Proof":"Prueba Sin Alcohol","Not drinking tonight?":"¿No bebes esta noche?","Try Zero Proof mocktails":"Prueba los mocktails Sin Alcohol","Ice and water are assumed.":"Se cuenta con hielo y agua.","Picks from drinks you can make, when your bar has any":"Elige entre las bebidas que puedes preparar, cuando tu barra tenga alguna","Jump to a section":"Ir a una sección","Jump to a spirit":"Ir a un destilado","Jump to a glass":"Ir a un vaso","Jump to a country":"Ir a un país","Jump to a letter in the drinks":"Ir a una letra de las bebidas","USA":"EE. UU.","UK":"R. U.",
 };
 // sentences built with numbers or names
 const kes=k=>KES[k]||k,ges=g=>g.split(' or ').map(x=>kes(x)).join(' o '),pls=(n,a,b)=>n==1?a:b;
 const ces=c=>(CES[c]||c).split('|')[0];
 const ESRX=[
+ [/^Needs (.+)$/,(m,k)=>'Falta '+kes(k)],
+ [/^Removed (.+)$/,(m,k)=>'Se quitó '+kes(k)],
+ [/^Did you mean (.+)\?$/,(m,k)=>'¿Quisiste decir '+kes(k)+'?'],
+ [/^Add (.+) to unlock (\d+) more drinks$/,(m,k,n)=>'Añade '+kes(k)+' para desbloquear '+n+' bebidas más'],
+ [/^(\d+) drinks? ready to mix$/,(m,n)=>n+' '+pls(n,'bebida lista','bebidas listas')+' para preparar'],
+ [/^(\d+) drinks? one bottle away$/,(m,n)=>n+' '+pls(n,'bebida','bebidas')+' a una botella'],
  [/^\+(\d+) more$/,(m,n)=>'+'+n+' más'],
  [/^(\d+) bottles?$/,(m,n)=>n+' '+pls(n,'botella','botellas')],
  [/^(\d+) ingredients?$/,(m,n)=>n+' '+pls(n,'ingrediente','ingredientes')],
@@ -2424,7 +2435,7 @@ const SHORTC={'United Kingdom':'UK','United States':'USA','Trinidad and Tobago':
 const co=c=>c.ct?`<span class="co" title="${c.ct}${c.cf==='D'?' (likely)':''}">${SHORTC[c.ct]||c.ct}${c.cf==='D'?'?':''}</span>`:'';
 const origin=c=>`<p class="mu"><b>Origin:</b> ${c.ct?c.ct+(c.cf==='D'?' (likely)':''):'unclear'}.${c.cn?' '+c.cn:''}</p>`;
 const flv=(c,h)=>c.fl.length?`<p class="mu fl">${c.fl.map(k=>`<span${h&&h.has(k)?' class="hit"':''}>${FK[k][1]}</span>`).join(' · ')}</p>`:'';
-let sel=new Set(),first,strict=false,FAV=new Set();
+let sel=new Set(),first,strict=false,FAV=new Set(),BN=null; // BN: bottles on the shelf at the last draw (null before the first)
 try{FAV=new Set(JSON.parse(localStorage.getItem('barFav')||'[]'))}catch(e){}
 try{sel=new Set(JSON.parse(localStorage.getItem('bar')||'[]').filter(k=>keys.includes(k)));strict=!!localStorage.getItem('barG')}catch(e){}
 const save=()=>{try{localStorage.setItem('bar',JSON.stringify([...sel]));localStorage.setItem('barG',strict?'1':'')}catch(e){}};
@@ -2450,9 +2461,12 @@ const sec=(t,a,o={})=>{if(!a.length)return'';
  const s=srt==='fit'&&!NEED.size?'az':srt,z=dir==='za'?-1:1,k=RANK[s],g=GROUP[s];
  const cmp=(x,y)=>(o.by?x.m.length-y.m.length:0)||(k?k(x.c)-k(y.c):0)||z*x.c.n.localeCompare(y.c.n);
  a=[...a].sort(g?(x,y)=>(!g(x.c))-(!g(y.c))||z*g(x.c).localeCompare(g(y.c))||cmp(x,y):cmp);
+ const gm=o.gm&&!g?x=>x.m[0]:null,gc={}; // One away: grouped by the missing bottle, biggest group first, so it reads as a shopping list
+ if(gm){a.forEach(x=>gc[gm(x)]=(gc[gm(x)]||0)+1);a.sort((x,y)=>gc[gm(y)]-gc[gm(x)]||gm(x).localeCompare(gm(y))||cmp(x,y))}
  const m=o.more??more,n=+m||0,cut=!o.cap||m===true?a.length:shown(n),id=o.id||'more';let last,h='';
  if(o.cap)AZL.push({id,t,n:a.map(x=>x.c.n),g:g&&a.map(x=>g(x.c)||NOGROUP[s])}); // every name (and group) in the list, shown or not, for the A–Z strip and the spirit row // more: true shows every card; a number, how many times "Show more" was tapped
- a.slice(0,cut).forEach(x=>{if(g&&g(x.c)!==last){last=g(x.c);h+=`<p class="cg">${last||NOGROUP[s]}</p>`}h+=card(x,o.plain)});
+ a.slice(0,cut).forEach(x=>{if(g&&g(x.c)!==last){last=g(x.c);h+=`<p class="cg">${last||NOGROUP[s]}</p>`}
+  else if(gm&&gm(x)!==last){last=gm(x);h+=`<p class="cg">Needs ${last}<small>${gc[last]}</small></p>`}h+=card(x,o.plain)});
  return`<h2>${t}<small>${a.length}</small></h2>`+h+(a.length>cut?`<div class="smw"><button class="chip smore" id="${id}">Show more</button>${n>=5?`<button class="chip smore" id="${id}-all">Show all (${a.length-cut})</button>`:''}</div>`:'')};
 // Collapsed dropdowns (Two ingredients away, All drinks): each keeps its open state across redraws, keyed by its "Show all" id
 const OPEN={},SHOW={}; // SHOW: which result lists have had "Show all" pressed, keyed by the button's id
@@ -2478,7 +2492,11 @@ function keep(el,f){const top=e=>e.getBoundingClientRect().top,nm=h=>h.childNode
   box=el.closest('[id]'),yb=box&&top(box);f();
  const h2=hn&&!el.isConnected&&jh().find(h=>nm(h)===hn),
   d=el.isConnected?top(el)-y:h2?top(h2)-yh:box&&box.isConnected?top(box)-yb:0;if(Math.abs(d)>.5)scrollBy({top:d,behavior:'instant'})}
-function add(s){const bad=[];s.split(/[,;\n]+/).map(strip).filter(Boolean).forEach(t=>{const k=resolve(t)||(t===strip(q.value)&&first);k?sel.add(k):bad.push(t)});q.value='';$('msg').textContent=bad.length?'Not in my recipe book yet: '+bad.join(', ')+'. Check the spelling, or pick it from the shelves below.':'';keep(q,draw)}
+function add(s){const bad=[];s.split(/[,;\n]+/).map(strip).filter(Boolean).forEach(t=>{const k=resolve(t)||(t===strip(q.value)&&first);k?sel.add(k):bad.push(t)});q.value='';const nr=bad.length===1&&near(bad[0]),m=$('msg');m.textContent=bad.length?'Not in my recipe book yet: '+bad.join(', ')+'. Check the spelling, or pick it from the shelves below.':'';
+ if(nr){const b=document.createElement('button');b.type='button';b.className='lk';b.dataset.k=nr;b.textContent=`Did you mean ${nr}?`;m.append(' ',b)}keep(q,draw)}
+// the closest ingredient name or alias to a typo (at most 1 edit for short words, 2 for longer), as its key
+function near(t){const lim=t.length<5?1:2;let best=null,bd=lim+1;for(const w of Object.keys(L)){if(Math.abs(w.length-t.length)>lim)continue;const d=dist(t,w);if(d<bd){bd=d;best=L[w]}}return best&&!sel.has(best)?best:null}
+function dist(a,b){let p=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){const c=[i];for(let j=1;j<=b.length;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[b.length]}
 let BUYL=[]; // the last Best next buys, for Copy shopping list
 const buy=r=>{
  const near=r.filter(x=>x.m.length&&x.m.length<3);
@@ -2488,6 +2506,7 @@ const buy=r=>{
  [...new Set(near.flatMap(x=>x.m.flatMap(alt)))].map(k=>({k,n:near.filter(x=>done(x,k)).map(x=>x.c.n).sort()}))
   .sort((a,b)=>b.n.length-a.n.length||a.k.localeCompare(b.k))
   .forEach(c=>{if(c.n.length>1&&top.length<5&&!top.some(t=>EXP[t.k]===c.k&&c.n.every(x=>t.n.includes(x))))top.push(c)});
+ const nb=$('nb');if(nb)nb.innerHTML=top[0]?`<button type="button" class="lk nb" data-k="${top[0].k}">Add ${top[0].k} to unlock ${top[0].n.length} more drinks</button>`:''; // the goal in sight, one tap away
  BUYL=top;return top.length?`<h2>Best next buys</h2><div class="c buy"><button class="chip cpy" id="copylist" type="button">Copy shopping list</button>${top.map(t=>`<div class="br" style="--w:${t.n.length/top[0].n.length}"><button class="chip" data-k="${t.k}">+ ${t.k}</button><div><b>${t.n.length} new drinks</b>${t.n.slice(0,3).join(', ')}${t.n.length>3?` and ${t.n.length-3} more`:''}<i class="bar"></i></div></div>`).join('')}<p class="mu">Tap one to add it to your bar and see what it unlocks.</p></div>`:''};
 const NOMATCH='<h2>No matches</h2><p class="mu">No drink has all of those. Try removing a flavor or changing your search.</p>';
 const miss=c=>[...new Set(c.i.filter(x=>!has(x.k)).map(x=>x.k).concat(strict?c.g.filter(k=>!gok(k)):[]))];
@@ -2580,8 +2599,11 @@ function draw(){AZL=[];$('t1').classList.toggle('hasbar',sel.size>0); // phones:
   if(sl.textContent!==sv){sl.textContent=sv;sl.classList.remove('swap');void sl.offsetWidth;sl.classList.add('swap')} // replay the slide-in only when the choice changes
   const n=hit.length,ready=r.filter(x=>!x.m.length).length;
   GREET=sel.size?[all.filter(x=>!x.m.length).length,all.filter(x=>x.m.length===1).length]:null;greet();peek();
+  // the first bottle on a phone keeps the shelf under your finger, so the headline that answers it is far above: say it here
+  if(BN===0&&sel.size&&innerWidth<1000){const[r,o]=GREET,n=r||o;if(n)toast(r?`${n} drink${n>1?'s':''} ready to mix`:`${n} drink${n>1?'s':''} one bottle away`,()=>$('out').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}),'See them')}
+  BN=sel.size;
   $('fsum').innerHTML=on?(n?`<b>${n}</b> drink${n>1?'s':''} match`+(sel.size?` · <b>${ready}</b> ready · <b>${r.length-ready}</b> one away`:''):'No drinks match that.')+' <button class="lk" id="fclr">Clear filters</button>':'';
-  const R=sec('Ready to mix',r.filter(x=>!x.m.length),{cap:1,more:SHOW.moreR,id:'moreR'}),O=sec('One ingredient away',r.filter(x=>x.m.length),{cap:1,more:SHOW.more1,id:'more1'});
+  const R=sec('Ready to mix',r.filter(x=>!x.m.length),{cap:1,more:SHOW.moreR,id:'moreR'}),O=sec('One ingredient away',r.filter(x=>x.m.length),{cap:1,more:SHOW.more1,id:'more1',gm:1});
   $('out').innerHTML=(sel.size?((R?R+buy(hit)+O:O+buy(hit)) /* nothing ready yet: the near misses lead */+away2(hit.filter(x=>x.m.length===2&&x.c.i.some(i=>has(i.k)))) /* only drinks that use something on the shelf */+sec('Needs more ingredients',rest,{cap:1,by:1})||(on?NOMATCH:'<h2>Nothing yet</h2><p class="mu">Add a spirit plus a mixer or some citrus and drinks will appear.</p>')):on?(n?sec('Matching drinks',hit,{cap:1,plain:1}):NOMATCH):'<p class="mu">Add what you own to see what you can make, or pick a flavor above.</p>'+drop('All drinks',hit,{cap:1,plain:1,id:'more'}))+'<p class="mu zlink">Not drinking tonight? <button class="lk" data-pg="zero">Try Zero Proof mocktails</button></p>';
   jumpBar();
   if(GROUP[sm]){const s=document.createElement('nav'),j=$('out').querySelector('.jb');s.className='jb sjb';s.setAttribute('aria-label','Jump to a '+{sp:'spirit',gl:'glass',cty:'country'}[sm]);
@@ -2606,7 +2628,7 @@ document.addEventListener('click',e=>{
   const pg=e.target.closest('[data-pg]');if(pg){setPage(pg.dataset.pg);return} // data-pg, not data-page: <html> carries data-page
   if(!e.target.closest('#smenu'))$('smenu').open=false;
   if(e.target.closest('#zclr')){const p=new Set(zsel);zsel.clear();zdraw();toast(`Cleared ${p.size} items`,()=>{p.forEach(k=>zsel.add(k));zdraw()});return}
-  const zk=e.target.closest('[data-zk]');if(zk){const k=zk.dataset.zk;zsel.has(k)?zsel.delete(k):zsel.add(k);zdraw();return}
+  const zk=e.target.closest('[data-zk]');if(zk){const k=zk.dataset.zk,rm=!!zk.closest('#zmine')&&zsel.has(k);zsel.has(k)?zsel.delete(k):zsel.add(k);zdraw();if(rm)toast(`Removed ${k}`,()=>{zsel.add(k);zdraw()});return}
   const zr=e.target.closest('[data-zr]');if(zr){$('settings').close();setPage('zero');$('zq').value=zr.dataset.zr;zdraw();const d=document.querySelector('#zout .c details');if(d)d.open=true;return}
   const fb=e.target.closest('[data-fav]');if(fb){const n=fb.dataset.fav;FAV.has(n)?FAV.delete(n):FAV.add(n);try{localStorage.setItem('barFav',JSON.stringify([...FAV]))}catch(x){}
    document.querySelectorAll('[data-fav]').forEach(b=>{if(b.dataset.fav===n)b.setAttribute('aria-pressed',FAV.has(n))});drawFav();return}
@@ -2626,7 +2648,7 @@ document.addEventListener('click',e=>{
   const so=e.target.closest('[data-s],[data-dir]');if(so){so.dataset.dir?dir=so.dataset.dir:(srt=so.dataset.s,$('smenu').open=false);
    try{localStorage.setItem('barSort',srt);localStorage.setItem('barDir',dir)}catch(x){}draw();return}
   const b=e.target.closest('[data-k]');
-  if(b){const k=b.dataset.k,go=()=>{sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)};b.closest('#most,#mine')?glide(go):go()}
+  if(b){const k=b.dataset.k,go=()=>{sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)};const rm=!!b.closest('#mine')&&sel.has(k);b.closest('#most,#mine')?glide(go):go();if(rm)toast(`Removed ${k}`,()=>glide(()=>{sel.add(k);draw()}))} // the glide applies go() a frame later, so decide first
 });
 // Most used and shelf chips glide between the two lists (View Transitions, like the watermelon tags); without it, or with reduce motion, they just redraw
 // the label, type box and shelves under the chips glide with them, or the Most used row slides over the type box while the shelf grows or shrinks
@@ -2729,7 +2751,7 @@ function greet(){
  // the new number starts its shine where the ✦'s twinkle is now, so the two stay in step across redraws
  const star=document.getAnimations().find(a=>a.animationName==='twinkle'),num=$('greet').querySelector('.num');if(star&&num)num.style.animationDelay=-(star.currentTime%2400)+'ms';
  if(num)reelTo(num,r);
- $('greet2').innerHTML=(o?`${pl(o,'more drink')} ${o===1?'is':'are'} one bottle away.`:'Add a spirit and a mixer or citrus to get started.')+' Ice and water are assumed. <a class="lk jump" href="#out">Show the drinks</a>';
+ $('greet2').innerHTML=(o?`${pl(o,'more drink')} ${o===1?'is':'are'} one bottle away.`:'Add a spirit and a mixer or citrus to get started.')+' Ice and water are assumed. <a class="lk jump" href="#out">Show the drinks</a><span id="nb"></span>';
  $('peekt').innerHTML=r?`<b>${r}</b> ready to mix`:`<b>${o}</b> one bottle away`}
 const SCR={},here=()=>(document.documentElement.dataset.page||'bar')+($('t2').hidden?'t1':'t2'); // scroll position per page and tab
 const tab=id=>{SCR[here()]=scrollY;if(id==='t1'&&location.hash.startsWith('#r/'))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}['t1','t2'].forEach(i=>$(i).hidden=i!==id);document.querySelector('.tabs').dataset.active=id;document.querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===id));if(id==='t2')look();else refit();greet();scrollTo({top:SCR[here()]||0,behavior:'instant'})};
@@ -2776,7 +2798,8 @@ const ZGR=[["Juices","lime juice,lemon juice,orange juice,pineapple juice,cranbe
 let zsel=new Set();try{zsel=new Set(JSON.parse(localStorage.getItem('zbar')||'[]'))}catch(e){}
 const zmiss=c=>c.i.map(x=>x.k).filter(k=>k!=='water'&&!zsel.has(k));
 $('zdd').innerHTML=ZGR.map(([t,l],i)=>`<details class="dd"><summary>${t}<b id="zb${i}"></b></summary><div class="row">${l.split(',').map(k=>`<button class="chip" data-zk="${k}">${k}</button>`).join('')}</div></details>`).join('');
-const zsec=(t,a,m)=>a.length?`<h2>${t}<small>${a.length}</small></h2>`+a.map(c=>card({c,m:m?zmiss(c):[]},!m)).join(''):'';
+const zsec=(t,a,m,gm)=>{if(!a.length)return'';let h='',last;const gc={};if(gm){a=[...a];a.forEach(c=>gc[zmiss(c)[0]]=(gc[zmiss(c)[0]]||0)+1);a.sort((x,y)=>gc[zmiss(y)[0]]-gc[zmiss(x)[0]]||zmiss(x)[0].localeCompare(zmiss(y)[0]))}
+ a.forEach(c=>{const k=gm&&zmiss(c)[0];if(gm&&k!==last){last=k;h+=`<p class="cg">Needs ${k}<small>${gc[k]}</small></p>`}h+=card({c,m:m?zmiss(c):[]},!m)});return`<h2>${t}<small>${a.length}</small></h2>`+h}; // One away is grouped by the missing item, as on the bar
 const zdraw=()=>{drawFav();try{localStorage.setItem('zbar',JSON.stringify([...zsel]))}catch(e){}
  document.querySelectorAll('#zdd [data-zk]').forEach(b=>b.classList.toggle('on',zsel.has(b.dataset.zk)));ZGR.forEach((g,i)=>$('zb'+i).textContent=g[1].split(',').filter(k=>zsel.has(k)).length||'');
  $('zmine').innerHTML=zsel.size?[...zsel].map(k=>`<button class="chip on x" data-zk="${k}" aria-label="Remove ${k}">${k}<svg aria-hidden="true" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6"/></svg></button>`).join(''):'<span class="mu">Nothing yet.</span>';$('zclr').hidden=zsel.size<2;fitRows('zmine');
@@ -2785,7 +2808,7 @@ const zdraw=()=>{drawFav();try{localStorage.setItem('zbar',JSON.stringify([...zs
  if(!zsel.size){$('zsum').textContent=`${l.length} drink${l.length>1?'s':''}`;$('zout').innerHTML=l.map(c=>card({c,m:[]},1)).join('');return}
  const r=l.filter(c=>!zmiss(c).length),o=l.filter(c=>zmiss(c).length===1),rest=l.filter(c=>zmiss(c).length>1);
  $('zsum').textContent=`${r.length} ready to make · ${o.length} one ingredient away`;
- $('zout').innerHTML=zsec('Ready to make',r,1)+zsec('One ingredient away',o,1)+zsec('Everything else',rest,0)};
+ $('zout').innerHTML=zsec('Ready to make',r,1)+zsec('One ingredient away',o,1,1)+zsec('Everything else',rest,0)};
 $('zq').oninput=zdraw;$('zq').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();e.target.blur()}};
 zdraw();
 // input clear with dissolve (transitions.dev): a copy of the typed text drops 12px, fades and blurs out over 400ms while a soft glow
@@ -2814,8 +2837,8 @@ q.oninput=draw;
 // toast: one message at a time; with an action it offers Undo for 6 seconds
 let UNDO=null,TT;
 const hideToast=()=>{$('toast').hidden=true;UNDO=null};
-function toast(m,undo){clearTimeout(TT);UNDO=undo||null;const t=$('toast'),ms=undo?6000:2500,bar=t.querySelector('.tbar');$('toastt').textContent=m;$('tundo').hidden=!undo;
- t.classList.toggle('undo',!!undo);t.style.setProperty('--d',ms+'ms');bar.style.animation='none';void bar.offsetWidth;bar.style.animation='';t.hidden=false;TT=setTimeout(hideToast,ms)} // the countdown bar restarts with each toast
+function toast(m,undo,label){clearTimeout(TT);UNDO=undo||null;const t=$('toast'),ms=undo?6000:2500,bar=t.querySelector('.tbar');$('toastt').textContent=m;$('tundo').hidden=!undo;$('tundo').textContent=label||'Undo';
+ t.classList.toggle('undo',!!undo);t.classList.toggle('go',!!label);t.style.setProperty('--d',ms+'ms');bar.style.animation='none';void bar.offsetWidth;bar.style.animation='';t.hidden=false;TT=setTimeout(hideToast,ms)} // the countdown bar restarts with each toast
 function copyText(t,done){const ok=()=>toast(done),old=()=>{const a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();try{document.execCommand('copy');ok()}catch(e){toast('Couldn’t copy')}a.remove()};
  navigator.clipboard?navigator.clipboard.writeText(t).then(ok,old):old()}
 // share a recipe as text (the amounts as shown, in the chosen servings and units); the phone's share sheet where there is one
