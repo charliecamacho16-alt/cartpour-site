@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-XaCKXcT6i8i6WyykOOIJDibn+yez/wXC1xMWB8TVyR4=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-LSGQdSj3d5gdmGCLgJjIr6LTHroaPvQL36fkd1mZFlo=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CartPour</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff4fc8'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23g)'/%3E%3Cpath d='M7.5 8.5h13L14 15.5z' fill='white'/%3E%3Cpath d='M14 15.5v5.5M10.5 21h7' stroke='white' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -859,7 +859,7 @@ html[data-calm] h1::after,html[data-calm] h1 .num{animation:none!important}
 </details>
 </details>
 <div class="tools"><details class="smenu" id="smenu"><summary><span class="sl">Sort</span> <b id="sval">A–Z</b></summary><div class="spanel">
-<div class="sdir" role="group" aria-label="Name order"><button class="chip" data-dir="az" aria-pressed="true">A–Z</button><button class="chip" data-dir="za" aria-pressed="false">Z–A</button></div>
+<div class="sdir" role="group" aria-label="Name order"><button class="chip" data-dir="az" aria-pressed="true" translate="no">A–Z</button><button class="chip" data-dir="za" aria-pressed="false" translate="no">Z–A</button></div>
 <div class="sopts" role="group" aria-label="Sort by"><button class="sopt" data-s="az" aria-pressed="true">Name</button><button class="sopt" data-s="few" aria-pressed="false">Fewest ingredients</button><button class="sopt" data-s="many" aria-pressed="false">Most ingredients</button><button class="sopt" data-s="sp" aria-pressed="false">Spirit</button><button class="sopt" data-s="gl" aria-pressed="false">Glass</button><button class="sopt" data-s="cty" aria-pressed="false">Country</button><button class="sopt" data-s="fit" id="fsort" aria-pressed="false" hidden>Closest flavor</button></div>
 </div></details>
 <p id="fsum" aria-live="polite"></p></div>
@@ -887,13 +887,13 @@ html[data-calm] h1::after,html[data-calm] h1 .num{animation:none!important}
 <input id="rq"name="cocktail" type="search" placeholder="Type a cocktail, e.g. Negroni…" spellcheck="false" enterkeyhint="search" autocomplete="off" autocapitalize="none" autocorrect="off" aria-label="Look up a cocktail"></div>
 <div class="rtools"><button class="chip" id="rshuf" type="button" aria-label="Shuffle a recipe" title="Picks from drinks you can make, when your bar has any"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Shuffle</button><button class="chip" id="rclr" type="button" aria-label="Clear and show all recipes" title="Show all recipes" hidden><svg aria-hidden="true" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6"/></svg></button></div></div>
 <div id="recent"></div>
-<div class="azw"><div id="rsug" class="row"></div><nav id="azs" aria-label="Jump to letter"></nav></div>
+<div class="azw"><div id="rsug" class="row"></div><nav id="azs" translate="no" aria-label="Jump to letter"></nav></div>
 <div id="rec"></div>
 </section>
 </main>
 <a class="peek" id="peek" href="#out"><span id="peekt"></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></span><span id="toastt"></span><button class="chip" id="tundo" type="button" hidden>Undo</button><i class="tbar" aria-hidden="true"></i></div>
-<nav class="oaz" id="oaz" tabindex="0" aria-label="Jump to a letter in the drinks"></nav>
+<nav class="oaz" id="oaz" translate="no" tabindex="0" aria-label="Jump to a letter in the drinks"></nav>
 <a class="totop" id="totop" href="#" aria-label="Back to top"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 <script>
 // Language: English is written into the page; Spanish is applied on top. Text the page draws is translated as it lands (a MutationObserver):
@@ -2636,8 +2636,8 @@ function draw(){AZL=[];$('t1').classList.toggle('hasbar',sel.size>0); // phones:
   const sm=srt==='fit'&&!st.need.size?'az':srt,D=dir==='za'?'Z–A':'A–Z'; // Closest flavor falls back to names when no flavor is picked
   document.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===sm));
   document.querySelectorAll('[data-dir]').forEach(b=>{const o=b.dataset.dir===dir;b.classList.toggle('on',o);b.setAttribute('aria-pressed',o)});
-  const sv=sm==='az'?D:document.querySelector(`[data-s="${sm}"]`).textContent+' · '+D,sl=$('sval');
-  if(sl.textContent!==sv){sl.textContent=sv;sl.classList.remove('swap');void sl.offsetWidth;sl.classList.add('swap')} // replay the slide-in only when the choice changes
+  const sl=$('sval'),sv=sm==='az'?'':document.querySelector(`[data-s="${sm}"]`).textContent+' · '; // A–Z sits in a translate="no" span: browser translation read it as "Arizona"
+  if(sl.dataset.v!==sv+D){sl.dataset.v=sv+D;sl.textContent=sv;const d=document.createElement('span');d.translate=false;d.textContent=D;sl.append(d);sl.classList.remove('swap');void sl.offsetWidth;sl.classList.add('swap')} // replay the slide-in only when the choice changes
   const n=hit.length,ready=r.filter(x=>!x.m.length).length;
   GREET=sel.size?[all.filter(x=>!x.m.length).length,all.filter(x=>x.m.length===1).length]:null;greet();peek();
   // the first bottle on a phone keeps the shelf under your finger, so the headline that answers it is far above: say it here
