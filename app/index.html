@@ -316,7 +316,7 @@ button.p.m::after{content:"+";margin-left:6px;font-weight:600}
 #azs{display:none}
 .azw:has(#rsug .cg){display:grid;grid-template-columns:1fr auto;gap:8px}
 /* condensed like the results strip: a short pill of letters, held near the middle of the screen */
-.azw:has(#rsug .cg) #azs{display:flex;flex-direction:column;position:sticky;top:max(16px,calc(50dvh - 240px));align-self:start;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:none;user-select:none}
+.azw:has(#rsug .cg) #azs{display:flex;flex-direction:column;position:sticky;top:max(16px,calc(50svh - 240px));align-self:start;padding:6px 0;border-radius:999px;border:1px solid var(--border);background:var(--raised);box-shadow:0 6px 18px rgba(91,33,182,.14);touch-action:none;user-select:none}
 #azs button{flex:none;height:17px}
 :is(#azs,#oaz) button{display:grid;place-items:center;flex:1;min-width:28px;padding:0;border:0;background:none;font:600 11px/1 var(--sans,inherit);color:var(--accent);cursor:pointer;border-radius:6px}
 :is(#azs,#oaz) button.on{color:#fff;background:var(--hot,var(--accent))}
@@ -564,7 +564,7 @@ h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.5
 :is(#azs,#oaz) button{min-width:36px;font-size:12px}
 /* touch: 44px targets (letters are as tall as the screen allows, up to 28px: the strip can also be dragged); chips keep their 40px look with a 44px hit area */
 @media(pointer:coarse){
- :is(#azs,#oaz){max-block-size:calc(100dvh - 140px)}
+ :is(#azs,#oaz){max-block-size:calc(100svh - 140px) /* svh, not dvh: dvh changes every frame while the address bar slides, which made the letters resize mid-scroll */}
  :is(#azs,#oaz) button{min-width:44px;font-size:13px}
  #azs button,#oaz button{flex:0 1 28px;height:auto;min-height:0}
  .azw:has(#rsug .cg) #azs{top:70px}
