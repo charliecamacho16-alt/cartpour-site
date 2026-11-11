@@ -1,7 +1,7 @@
 {
   "name": "CartPour: Cocktail Finder",
   "short_name": "CartPour",
-  "description": "Tick the bottles you own and see every cocktail you can pour tonight.",
+  "description": "Select the bottles you own and see every cocktail you can make tonight.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
