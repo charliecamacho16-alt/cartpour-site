@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-Ys8dQUjc42B9kzkrptLRhuhS4Vx2izkSh+3d1Uxhblw=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NNQ9NGjNO6NMBtHzO9NbhZ5/uvDQhuuuFR4aT8G5M9s=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-ZbLdP048mJExVMZloiJP396b8IwgLYRZIemr5B1gXYU=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CartPour</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff4fc8'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23g)'/%3E%3Cpath d='M7.5 8.5h13L14 15.5z' fill='white'/%3E%3Cpath d='M14 15.5v5.5M10.5 21h7' stroke='white' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -552,6 +552,14 @@ h1::after{content:"✦" / "";display:inline-block;margin-left:.25em;font-size:.5
 .tq::after{content:"?";display:inline-grid;place-items:center;width:16px;height:16px;margin-left:4px;border-radius:99px;font-size:11px;font-weight:700;vertical-align:1px;color:#fff;background:var(--hot,var(--accent))}
 .tip{display:block;margin:6px 0 2px;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.45;color:var(--text);background:var(--raised);border:1px solid var(--border)}
 .tip[hidden]{display:none}
+/* loader: soda bubbles rising in a glass and a shimmering label (after loading-ui's bobbing dots and text shimmer); animation in the Motion block */
+.pouring{display:flex;flex-direction:column;align-items:center;gap:10px;padding:40px 0}
+.pglass{width:48px;height:48px;overflow:visible}
+.pglass .rim{fill:none;stroke:url(#pourg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pglass .liq{fill:url(#pourg);opacity:.22}
+.pglass circle{fill:#d6168f;transform-box:fill-box;transform-origin:center;opacity:0}
+.pglass circle:nth-of-type(2){fill:#7c3aed}.pglass circle:nth-of-type(3){fill:#0e7490}
+.shim{font-size:15px;font-weight:600;color:var(--muted)}
 .tip b{color:var(--link,var(--accent))}
 :is(#azs,#oaz) button{min-width:36px;font-size:12px}
 /* touch: 44px targets (letters are as tall as the screen allows, up to 28px: the strip can also be dragged); chips keep their 40px look with a 44px hit area */
@@ -681,7 +689,13 @@ details[open]::details-content{block-size:auto;opacity:1;transition-duration:220
 /* A–Z letters: the hover tint fades in fast, a press shrinks the letter, a picked letter pops in (its gradient can't fade, so it scales up from small) */
 :is(#azs,#oaz) button{transition:background-color 120ms var(--ease-out),color 120ms var(--ease-out),scale 120ms var(--ease-out)}
 :is(#azs,#oaz) button:active{scale:.88}
-@media(prefers-reduced-motion:no-preference){:is(#azs,#oaz) button.on{animation:azpop 180ms var(--ease-out)}}
+@media(prefers-reduced-motion:no-preference){:is(#azs,#oaz) button.on{animation:azpop 180ms var(--ease-out)}
+.pglass circle{animation:bub 1.5s cubic-bezier(.45,0,.55,1) infinite}.pglass circle:nth-of-type(2){animation-delay:.5s}.pglass circle:nth-of-type(3){animation-delay:1s}
+@keyframes bub{0%{transform:translateY(0) scale(.5);opacity:0}25%{opacity:1}100%{transform:translateY(-11px) scale(1);opacity:0}}
+.shim{background:linear-gradient(90deg,var(--muted) 0 38%,#d6168f 46%,#7c3aed 54%,var(--muted) 62% 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 1.8s linear infinite}
+@keyframes shim{from{background-position:100% 0}to{background-position:0 0}}
+@media(prefers-reduced-motion:reduce){.pglass circle,.shim{animation:none}.pglass circle{opacity:1}.shim{background:none;color:var(--muted)}}
+html[data-motion="reduce"] .pglass circle{opacity:1}html[data-motion="reduce"] .shim{background:none;color:var(--muted)}}
 @keyframes azpop{from{scale:.6;opacity:.5}}
 .peek b{font-variant-numeric:tabular-nums}
 .peek svg{width:18px;height:18px}
@@ -849,7 +863,7 @@ html[data-calm] h1::after,html[data-calm] h1 .num{animation:none!important}
 <div class="sopts" role="group" aria-label="Sort by"><button class="sopt" data-s="az" aria-pressed="true">Name</button><button class="sopt" data-s="few" aria-pressed="false">Fewest ingredients</button><button class="sopt" data-s="many" aria-pressed="false">Most ingredients</button><button class="sopt" data-s="sp" aria-pressed="false">Spirit</button><button class="sopt" data-s="gl" aria-pressed="false">Glass</button><button class="sopt" data-s="cty" aria-pressed="false">Country</button><button class="sopt" data-s="fit" id="fsort" aria-pressed="false" hidden>Closest flavor</button></div>
 </div></details>
 <p id="fsum" aria-live="polite"></p></div>
-<div id="out"></div>
+<div id="out"><div class="pouring" role="status"><svg class="pglass" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="pourg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d6168f"/><stop offset=".55" stop-color="#7c3aed"/><stop offset="1" stop-color="#0e7490"/></linearGradient></defs><path class="liq" d="M11 15h26l-13 12z"/><path class="rim" d="M8 10h32L24 27zM24 27v12M17 40h14"/><circle cx="20" cy="20" r="1.8"/><circle cx="25" cy="21" r="1.5"/><circle cx="29" cy="18" r="1.3"/></svg><span class="shim">Pouring the menu…</span></div></div>
 </div>
 </section>
 <section id="zp" aria-labelledby="zp-h">
@@ -896,7 +910,7 @@ const ES={
 // greeting
 "What’s on your shelf?":"¿Qué tienes en tu barra?","Select the bottles you own and see what you can make. Ice and water are assumed.":"Marca las botellas que tienes y mira qué puedes servir. Se cuenta con hielo y agua.","Look up a recipe":"Busca una receta","Type a drink or one of its other names.":"Escribe una bebida o uno de sus otros nombres.","You can pour":"Puedes servir","drinks tonight.":"bebidas esta noche.","drink tonight.":"bebida esta noche.","Nothing ready to pour yet.":"Aún no hay nada listo para servir.","more drinks are one bottle away. Ice and water are assumed.":"bebidas más están a una botella. Se cuenta con hielo y agua.","more drink is one bottle away. Ice and water are assumed.":"bebida más está a una botella. Se cuenta con hielo y agua.","Add a spirit and a mixer or citrus to get started. Ice and water are assumed.":"Añade un destilado y un refresco o cítricos para empezar. Se cuenta con hielo y agua.","Show the drinks":"Ver las bebidas","ready to mix":"listas para preparar","one bottle away":"a una botella",
 // your bar
-"Your bar":"Tu barra","Pick from the shelves or type anything else.":"Elige de los estantes o escribe cualquier otra cosa.","Type an ingredient, e.g. gin…":"Escribe un ingrediente, p. ej. ginebra…","Add an ingredient":"Añadir un ingrediente","On your shelf":"En tu estante","Nothing yet.":"Nada todavía.","Clear all":"Borrar todo","No match yet.":"Sin coincidencias.","Only show drinks I can fully garnish":"Mostrar solo bebidas que puedo decorar por completo","Specialty liqueurs & schnapps":"Licores especiales y schnapps",
+"Your bar":"Tu barra","Pick from the shelves or type anything else.":"Elige de los estantes o escribe cualquier otra cosa.","Type an ingredient, e.g. gin…":"Escribe un ingrediente, p. ej. ginebra…","Add an ingredient":"Añadir un ingrediente","On your shelf":"En tu estante","Nothing yet.":"Nada todavía.","Clear all":"Borrar todo","Pouring the menu…":"Sirviendo el menú…","No match yet.":"Sin coincidencias.","Only show drinks I can fully garnish":"Mostrar solo bebidas que puedo decorar por completo","Specialty liqueurs & schnapps":"Licores especiales y schnapps",
 "Base spirits":"Destilados","Liqueurs":"Licores","Aperitifs, wine & bitters":"Aperitivos, vinos y amargos","Mixers & juices":"Refrescos y jugos","Syrups & pantry":"Jarabes y despensa","Garnishes":"Decoraciones",
 "Pick a spirit to see its varieties. Flavored vodkas count as vodka, dark and spiced rum as rum, and bourbon, rye, scotch and Irish whiskey as whiskey; cognac counts as brandy and calvados as apple brandy. Other flavored spirits count only as themselves.":"Elige un destilado para ver sus variedades. Los vodkas de sabores cuentan como vodka, el ron oscuro y el especiado como ron, y el bourbon, el rye, el escocés y el irlandés como whiskey; el coñac cuenta como brandy y el calvados como brandy de manzana. Los demás destilados de sabores solo cuentan como ellos mismos.","Prosecco, champagne and cava count as sparkling wine.":"El prosecco, el champán y el cava cuentan como vino espumoso.","Fresh lime, lemon, orange, grapefruit and pineapple also count as juice. Tajín works wherever a salt rim is called for.":"El limón, el limón amarillo, la naranja, la toronja y la piña frescos también cuentan como jugo. El Tajín sirve donde se pide escarchar con sal.",
 // filters and sort
@@ -2414,7 +2428,7 @@ const TECH=[
 const tq=s=>{const es=LANG==='es',t=TECH.find(t=>t[es?1:0].test(s));if(!t)return s;const m=s.match(t[es?1:0]);
  return `${s.slice(0,m.index)}<button type="button" class="tq" aria-expanded="false">${m[0]}</button>${s.slice(m.index+m[0].length)}<span class="tip" hidden><b>${t[es?4:2]}:</b> ${t[es?5:3]}</span>`};
 const recipe=(c,f)=>`${f?`${hd(c)}${flv(c)}`:''}<div class="rtl"><p class="mu"><b>Ingredients</b></p>${segs()}</div><ul>${c.i.map(x=>`<li><span class="amt" data-t="${x.t.replace(/"/g,'&quot;')}">${amt(x.t)}</span>${sel.size&&!c.z?(has(x.k)?'':' <span class="mu">(missing)</span>'):''}</li>`).join('')}</ul>${c.g.length?`<p class="mu">Garnish: ${c.g.map(gname).join(', ')}</p>`:''}<p class="mu"><b>Steps</b></p><ol>${c.st.split(';').map(s=>`<li>${tq(s)}</li>`).join('')}</ol>${origin(c)}${SRC[c.src]?`<p class="src">Source: ${SRC[c.src]}</p>`:''}<button class="chip shr" type="button" data-share="${c.n}">Share recipe</button>`;
-const $=i=>document.getElementById(i),q=$('q');
+const $=i=>document.getElementById(i),q=$('q'),POUR=$('out').innerHTML; // POUR: the bubbling-glass loader, shown until the first draw and reused by Show all
 const strip=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/['’‘]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
 const keys=[...new Set([...DB.flatMap(c=>c.i.map(x=>x.k)),...GR.flatMap(g=>g[1].split(','))])];
 const L=Object.create(null);keys.forEach(k=>L[strip(k)]=k);Object.keys(A).forEach(a=>L[strip(a)]=A[a]);
@@ -2663,7 +2677,7 @@ document.addEventListener('click',e=>{
   const sv=e.target.closest('[data-sv],[data-u]');if(sv){if(sv.dataset.sv)SERV=+sv.dataset.sv;else{UNIT=sv.dataset.u;try{localStorage.setItem('barUnit',UNIT)}catch(x){}}amts();return}
   if(e.target.closest('#clr')){const p=new Set(sel);sel.clear();draw();toast(`Cleared ${p.size} bottles`,()=>{p.forEach(k=>sel.add(k));draw()});return}
   if(e.target.id==='fclr'){fsel.clear();csel.clear();tsel.clear();$('fq').value='';more=false;draw();return}
-  const mo=/^(more[21R]?)(-all)?$/.exec(e.target.id);if(mo){const k=mo[1],v=mo[2]?true:(+(k==='more'?more:SHOW[k])||0)+1;k==='more'?more=v:SHOW[k]=v;draw();return}
+  const mo=/^(more[21R]?)(-all)?$/.exec(e.target.id);if(mo){const k=mo[1],v=mo[2]?true:(+(k==='more'?more:SHOW[k])||0)+1;k==='more'?more=v:SHOW[k]=v;if(mo[2]){e.target.parentNode.innerHTML=POUR;requestAnimationFrame(()=>setTimeout(draw))}else draw();return} // Show all can take half a second: paint the loader first
   const t=e.target.closest('[data-t]');if(t){tab(t.dataset.t);return}
   const r=e.target.closest('[data-r]');if(r){if($('settings').open)$('settings').close();tab('t2');look(r.dataset.r);window.scrollTo(0,0);return}
   const bb=e.target.closest('[data-b]');const bc=e.target.closest('[data-bc]');if(bc){bcat=bcat===bc.dataset.bc?'':bc.dataset.bc;bsel='';bmore=bcom=false;bdraw();return}

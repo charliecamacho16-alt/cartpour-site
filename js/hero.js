@@ -51,3 +51,15 @@
     if (e.isIntersecting) { k = 0; show(0); timer = setInterval(tick, 1300); }
   }).observe(demo);
 })();
+
+// Footer wordmark: hover is CSS; this lights the letters a finger slides across, and sweeps the word once on arrival.
+(() => {
+  const word = document.querySelector('footer .word');
+  if (!word) return;
+  const letters = [...word.children], timers = new Map();
+  const light = s => { s.classList.add('on'); clearTimeout(timers.get(s)); timers.set(s, setTimeout(() => s.classList.remove('on'), 1100)); };
+  word.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') return; const el = document.elementFromPoint(e.clientX, e.clientY); if (letters.includes(el)) light(el); });
+  word.addEventListener('pointerdown', e => { if (letters.includes(e.target)) light(e.target); });
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  new IntersectionObserver(([e], o) => { if (!e.isIntersecting) return; o.disconnect(); letters.forEach((s, i) => setTimeout(() => light(s), calm ? 0 : i * 70)); }, { threshold: .6 }).observe(word);
+})();

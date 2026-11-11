@@ -121,6 +121,13 @@
   .end .ctas { justify-content: center; }
   footer { border-top: 1px solid var(--rule); padding: 24px 0 40px; color: var(--muted); font-size: 15px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  /* footer wordmark: outlined letters fill with the gradient on hover (CSS), a finger slide or once on arrival (js/hero.js) */
+  .word { display: flex; justify-content: center; margin: 0 0 24px; font: 900 clamp(52px, 15vw, 190px)/1 system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: -.01em; user-select: none; touch-action: pan-y; }
+  .word span { position: relative; color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 30%, transparent); background: var(--hot); -webkit-background-clip: text; background-clip: text;
+    background-size: 0% 100%; background-repeat: no-repeat; transition: background-size 380ms cubic-bezier(.23,1,.32,1), transform 260ms cubic-bezier(.23,1,.32,1), -webkit-text-stroke-color 260ms; }
+  .word span.on { background-size: 100% 100%; -webkit-text-stroke-color: transparent; transform: translateY(-.06em); }
+  @media (hover: hover) and (pointer: fine) { .word span:hover { background-size: 100% 100%; -webkit-text-stroke-color: transparent; transform: translateY(-.06em); } }
+  @media (prefers-reduced-motion: reduce) { .word span { transition: none; } .word span.on, .word span:hover { transform: none; } }
 </style>
 </head>
 <body>
@@ -206,7 +213,7 @@
 </div></section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 CartPour</span><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms of use</a><a href="mailto:main@cartpour.com">main@cartpour.com</a><span>For adults of legal drinking age. Please drink responsibly.</span></div></footer>
+<footer><div class="word" aria-hidden="true"><span>C</span><span>a</span><span>r</span><span>t</span><span>P</span><span>o</span><span>u</span><span>r</span></div><div class="wrap"><span>© 2026 CartPour</span><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms of use</a><a href="mailto:main@cartpour.com">main@cartpour.com</a><span>For adults of legal drinking age. Please drink responsibly.</span></div></footer>
 <script src="/js/hero.js" defer></script>
 <script data-goatcounter="https://cart-pour.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
