@@ -58,7 +58,7 @@
   .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
   .facts li { padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; background: var(--card); border: 1px solid var(--edge); }
   .fine { font-size: 14px; color: var(--muted); margin-top: 12px; }
-  .step img, .zp img { border-radius: 22px; border: 1px solid var(--edge); box-shadow: 0 18px 44px rgba(76,29,149,.2); display: block; height: auto; }
+  .zp img { border-radius: 22px; border: 1px solid var(--edge); box-shadow: 0 18px 44px rgba(76,29,149,.2); display: block; height: auto; }
   /* hero phone: a drawn demo of the app (light, like the app), played by js/hero.js; the markup is the final frame */
   .phone { position: relative; width: min(320px, 80vw); margin: 0 auto; aspect-ratio: 9 / 18.5; border-radius: 48px; padding: 11px; background: linear-gradient(160deg, #2a2140, #0b0718 60%);
     box-shadow: 0 0 0 1px rgba(255,255,255,.14), inset 0 1px 0 rgba(255,255,255,.18), 0 30px 70px rgba(76,29,149,.35); }
@@ -92,12 +92,51 @@
   section.blk { padding: 56px 0; border-top: 1px solid var(--rule); }
   h2 { font-size: clamp(28px, 4.5vw, 40px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 10px; }
   .kick { color: var(--muted); max-width: 60ch; margin: 0 0 32px; }
-  .steps { display: grid; gap: 28px; }
-  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-  .step img { width: 100%; max-width: 280px; margin: 0 auto 18px; }
-  .step b { display: flex; align-items: center; gap: 10px; font-size: 18px; }
-  .step b span { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--hot); color: #fff; font-size: 14px; }
-  .step p { color: var(--muted); margin: 6px 0 0; }
+  /* How it works story: the section pins below the header while you scroll through it, and the scroll plays a drawn phone
+     through the three steps (js/hero.js). The markup is step 1's first frame. Own class names: the hero owns .phone and .scr */
+  #story { position: relative; height: 330vh; }
+  #story .stage { position: sticky; top: 64px; height: calc(100vh - 64px); height: calc(100svh - 64px); display: grid; align-items: center; gap: 16px 48px; padding: 16px; max-width: 1080px; margin: 0 auto; }
+  @media (min-width: 760px) { #story .stage { grid-template-columns: 340px 1fr; } }
+  @media (max-width: 759px) { #story .stage { grid-template-rows: auto 1fr; align-content: start; } }
+  #story .rail { display: flex; gap: 6px; margin: 0 0 18px; }
+  #story .rail i { flex: 1; height: 4px; border-radius: 9px; background: var(--rule); overflow: hidden; position: relative; }
+  #story .rail b { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0); background: var(--hot); }
+  #story .words { position: relative; min-height: 210px; }
+  #story .sw { position: absolute; inset: 0 auto auto 0; opacity: 0; transform: translateY(16px); transition: opacity 300ms, transform 360ms cubic-bezier(.23,1,.32,1); }
+  #story .sw.on { opacity: 1; transform: none; }
+  #story .sw small { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; background: var(--hot); font: 700 14px system-ui, sans-serif; margin-bottom: 10px; }
+  #story .sw h3 { font-size: clamp(26px, 3.6vw, 38px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 8px; }
+  #story .sw p { color: var(--muted); margin: 0; max-width: 40ch; }
+  @media (max-width: 759px) { #story .words { min-height: 170px; } #story .sw h3 { font-size: 24px; } #story .sw p { font-size: 15px; } }
+  #story .sphone { position: relative; width: min(320px, 78vw); margin: 0 auto; aspect-ratio: 9 / 18.5; border-radius: 48px; padding: 11px; background: linear-gradient(160deg, #2a2140, #0b0718 60%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.14), inset 0 1px 0 rgba(255,255,255,.18), 0 30px 70px rgba(76,29,149,.3); }
+  @media (max-width: 759px) { #story .sphone { width: min(230px, 58vw); } }
+  #story .sphone::before { content: ""; position: absolute; top: 21px; left: 50%; width: 84px; height: 22px; margin-left: -42px; border-radius: 99px; background: #0b0718; z-index: 3; }
+  #story .sscr { position: relative; height: 100%; border-radius: 38px; overflow: hidden; color: #1d1530; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: radial-gradient(90% 50% at 0 0, #ffd3f3, transparent 70%), radial-gradient(80% 50% at 100% 0, #c6f1ff, transparent 70%), radial-gradient(90% 60% at 50% 100%, #e2d3ff, transparent 70%), #f6f1ff; }
+  #story .view { position: absolute; inset: 0; padding: 52px 16px 16px; opacity: 0; transform: translateX(14px); transition: opacity 320ms, transform 420ms cubic-bezier(.23,1,.32,1); }
+  #story .view.on { opacity: 1; transform: none; }
+  #story .bar { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; margin-bottom: 12px; }
+  #story .bar img { width: 22px; height: 22px; }
+  #story .hl { font-size: 21px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; margin: 0 0 6px; min-height: 2.3em; color: #2a1a5e; }
+  #story .hl b { background: linear-gradient(120deg, #d6168f, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #story .sub { font-size: 13px; color: #5d5470; margin: 0 0 14px; }
+  #story .lab { font-size: 12px; font-weight: 700; color: #5d5470; margin: 0 0 8px; }
+  #story .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  #story .chip { padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: linear-gradient(180deg, #fff, #f0e8ff); border: 1px solid #cdbcff; transition: color 200ms, background 200ms; }
+  #story .chip.on { color: #fff; border-color: transparent; background: var(--hot); }
+  #story .row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; margin-bottom: 7px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.45)); border: 1px solid #fff;
+    box-shadow: 0 6px 16px rgba(91,33,182,.1); font-weight: 650; font-size: 14px; opacity: 0; transform: translateY(10px); transition: opacity 260ms, transform 320ms cubic-bezier(.23,1,.32,1); }
+  #story .row.on { opacity: 1; transform: none; }
+  #story .row::before { content: ""; width: 22px; height: 22px; border-radius: 7px; flex: none; background: var(--hot); }
+  #story .rc h4 { display: flex; align-items: center; gap: 10px; font-size: 20px; margin: 0 0 2px; }
+  #story .rc h4::before { content: ""; width: 32px; height: 32px; border-radius: 10px; background: var(--hot); }
+  #story .rc .fl { font-size: 13px; color: #5d5470; margin: 0 0 12px; }
+  #story .rc ul, #story .rc ol { margin: 0 0 10px; padding-left: 20px; font-size: 13.5px; }
+  #story .rc li { opacity: 0; transform: translateX(-6px); transition: opacity 240ms, transform 300ms cubic-bezier(.23,1,.32,1); margin-bottom: 4px; }
+  #story .rc li.on { opacity: 1; transform: none; }
+  #story .rc .h { font-size: 12px; font-weight: 700; color: #6d28d9; margin: 0 0 4px; }
+  @media (prefers-reduced-motion: reduce) { #story .sw, #story .view, #story .row, #story .rc li, #story .chip { transition: none; } }
   .grid { display: grid; gap: 14px; }
   @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -163,12 +202,32 @@
 <section class="blk" id="how"><div class="wrap">
   <h2>How it works</h2>
   <p class="kick">Three taps from “what’s in the liquor cabinet?” to a drink in your hand.</p>
-  <div class="steps">
-    <div class="step"><img src="img/phone-1-home.webp" alt="" loading="lazy" width="1080" height="2100"><b><span>1</span>Select your bottles</b><p>Type them or tap them on the shelves. “Scotch” and “bourbon” count as whiskey, lime counts as lime juice.</p></div>
-    <div class="step"><img src="img/phone-2-ready.webp" alt="" loading="lazy" width="1080" height="2100"><b><span>2</span>See what you can make</b><p>Ready to mix first, then drinks one or two ingredients away. Tap “needs X +” to add a bottle you just bought.</p></div>
-    <div class="step"><img src="img/phone-3-recipe.webp" alt="" loading="lazy" width="1080" height="2100"><b><span>3</span>Pour it</b><p>Amounts, steps and the right glass. Switch oz and ml, or make two or four at once.</p></div>
+</div>
+<div id="story">
+  <div class="stage">
+    <div class="sphone" role="img" aria-label="CartPour, step by step: selecting six bottles, the ten drinks they make, and the Margarita recipe">
+      <div class="sscr" aria-hidden="true">
+        <div class="view on"><div class="bar"><img src="img/logo-64.png" alt="" width="22" height="22">CartPour</div>
+          <p class="hl">What’s on your shelf?</p><p class="sub">Tap the bottles you own.</p><p class="lab">Your shelf</p>
+          <div class="chips"><span class="chip">vodka</span><span class="chip">club soda</span><span class="chip">lime juice</span><span class="chip">tequila</span><span class="chip">triple sec</span><span class="chip">orange juice</span><span class="chip">gin</span><span class="chip">rum</span></div></div>
+        <div class="view"><div class="bar"><img src="img/logo-64.png" alt="" width="22" height="22">CartPour</div><p class="hl">Ready to mix · <b>10</b></p>
+          <div class="row">70 And Soda</div><div class="row">Kamikaze</div><div class="row">Margarita</div><div class="row">Orange Crush</div><div class="row">Patrón Ranch Water</div><div class="row">Primavera Sunset</div><div class="row">Screwdriver</div></div>
+        <div class="view rc"><div class="bar"><img src="img/logo-64.png" alt="" width="22" height="22">CartPour</div><h4>Margarita</h4><p class="fl">Citrusy · Sour · Refreshing</p>
+          <p class="h">Ingredients</p><ul><li>1⅔ oz (50 ml) tequila</li><li>⅔ oz (20 ml) triple sec</li><li>½ oz (15 ml) lime juice</li><li>Garnish: salt or tajín rim</li></ul>
+          <p class="h">Steps</p><ol><li>Add everything to a shaker with ice.</li><li>Shake well and strain into a chilled coupe.</li><li>Salt half the rim of the glass if you like.</li></ol></div>
+      </div>
+    </div>
+    <div>
+      <div class="rail" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+      <div class="words">
+        <div class="sw on"><small>1</small><h3>Select your bottles</h3><p>Type them or tap them on the shelves. “Scotch” and “bourbon” count as whiskey, lime counts as lime juice.</p></div>
+        <div class="sw"><small>2</small><h3>See what you can make</h3><p>Ready to mix first, then drinks one or two ingredients away. Tap “needs X +” to add a bottle you just bought.</p></div>
+        <div class="sw"><small>3</small><h3>Pour it</h3><p>Amounts, steps and the right glass. Switch oz and ml, or make two or four at once.</p></div>
+      </div>
+    </div>
   </div>
-</div></section>
+</div>
+</section>
 
 <section class="blk" id="features"><div class="wrap">
   <h2>Everything for a home bar</h2>
