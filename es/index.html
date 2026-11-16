@@ -40,8 +40,12 @@
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
   a { color: var(--link); }
   /* header */
-  .top { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); background: color-mix(in srgb, var(--ground) 70%, transparent); border-bottom: 1px solid var(--rule); }
+  .top { position: fixed; top: 0; left: 0; right: 0; z-index: 5; backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); background: color-mix(in srgb, var(--ground) 70%, transparent); border-bottom: 1px solid var(--rule); }
   .top .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+  /* ScrollSmoother moves #smooth-content inside a fixed wrapper, so the header is fixed and the content starts below it.
+     With smoothing on (html.smooth, js/hero.js) the story stage is pinned by ScrollTrigger instead of CSS sticky */
+  #smooth-content { padding-top: 64px; }
+  .smooth #story .stage { position: relative; top: auto; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; margin-right: auto; }
   .brand img { width: 32px; height: 32px; }
   .top nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; }
@@ -185,17 +189,18 @@
   <a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a>
 </div></header>
 
+<div id="smooth-wrapper"><div id="smooth-content">
 <main>
 <div class="wrap">
   <section class="hero">
     <div>
       <h1>Cócteles con las botellas que ya tienes.</h1>
       <p class="lead">Elige tus botellas. <span translate="no">CartPour</span> te muestra todas las bebidas que puedes preparar esta noche, y la botella que más opciones te abre.</p>
-      <div class="ctas"><a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a></div>
+      <div class="ctas"><a class="btn p" href="/app/">Abrir <span translate="no">CartPour</span></a><a class="btn s" href="#how">Cómo funciona</a></div>
       <ul class="facts"><li>Más de 600 cócteles</li><li>100 mocktails</li><li>Gratis</li><li>Funciona sin conexión</li></ul>
       <p class="fine">La app para Android llega pronto a Google Play.</p>
     </div>
-    <div class="phone" role="img" aria-label="Demostración de CartPour: al elegir seis botellas pasas de ninguna bebida a 10 listas para servir">
+    <div class="phone" data-speed="clamp(0.88)" role="img" aria-label="Demostración de CartPour: al elegir seis botellas pasas de ninguna bebida a 10 listas para servir">
       <div class="scr" id="demo" aria-hidden="true">
         <div class="bar"><img src="/img/logo-64.png" alt="" width="22" height="22"><span translate="no">CartPour</span></div>
         <p class="hl" id="dhl">Puedes servir <b>10</b> bebidas esta noche.</p>
@@ -242,12 +247,12 @@
   <h2>Todo para el bar de tu casa</h2>
   <p class="kick">Hecho para bares caseros de verdad: media botella de vermut, unos limones y lo que quedó de la última fiesta.</p>
   <div class="grid">
-    <div class="card"><b>Más de 600 cócteles</b><span>Clásicos de la IBA, favoritos modernos y recetas de las propias marcas, cada uno con su origen.</span></div>
-    <div class="card"><b>La mejor próxima botella</b><span>Mira qué botella te abre más bebidas nuevas antes de tu próxima ida a la licorería.</span></div>
-    <div class="card"><b>Busca por sabor o tema</b><span>Frutal, amargo, herbal… o Halloween, Navidad y bebidas de películas y series.</span></div>
-    <div class="card"><b>Prepara por marca</b><span>Elige una botella que tengas y mira las recetas que recomiendan sus fabricantes.</span></div>
-    <div class="card"><b>Favoritos y enlaces</b><span>Marca con estrella las bebidas que te encantan y comparte cualquier receta con un enlace.</span></div>
-    <div class="card"><b>Privado y sin conexión</b><span>Sin cuenta, sin anuncios, sin cookies. Tu estante se queda en tu dispositivo.</span></div>
+    <div class="card" data-lag="0.00"><b>Más de 600 cócteles</b><span>Clásicos de la IBA, favoritos modernos y recetas de las propias marcas, cada uno con su origen.</span></div>
+    <div class="card" data-lag="0.08"><b>La mejor próxima botella</b><span>Mira qué botella te abre más bebidas nuevas antes de tu próxima ida a la licorería.</span></div>
+    <div class="card" data-lag="0.16"><b>Busca por sabor o tema</b><span>Frutal, amargo, herbal… o Halloween, Navidad y bebidas de películas y series.</span></div>
+    <div class="card" data-lag="0.00"><b>Prepara por marca</b><span>Elige una botella que tengas y mira las recetas que recomiendan sus fabricantes.</span></div>
+    <div class="card" data-lag="0.08"><b>Favoritos y enlaces</b><span>Marca con estrella las bebidas que te encantan y comparte cualquier receta con un enlace.</span></div>
+    <div class="card" data-lag="0.16"><b>Privado y sin conexión</b><span>Sin cuenta, sin anuncios, sin cookies. Tu estante se queda en tu dispositivo.</span></div>
   </div>
 </div></section>
 
@@ -259,7 +264,7 @@
       <a class="btn s" href="/app/">Abrir <span translate="no">CartPour</span></a>
       <p class="fine">En la app, toca el título <span translate="no">CartPour</span> y elige Sin Alcohol.</p>
     </div>
-    <img src="/img/phone-4-zero-proof.webp" alt="Página Sin Alcohol con mocktails listos para preparar" loading="lazy" width="1080" height="2100">
+    <img src="/img/phone-4-zero-proof.webp" data-speed="0.96" alt="Página Sin Alcohol con mocktails listos para preparar" loading="lazy" width="1080" height="2100">
   </div>
 </div></section>
 
@@ -282,6 +287,10 @@
 </main>
 
 <footer><div class="word" aria-hidden="true" translate="no"><span>C</span><span>a</span><span>r</span><span>t</span><span>P</span><span>o</span><span>u</span><span>r</span></div><div class="wrap"><span>© 2026 <span translate="no">CartPour</span></span><a href="/privacy/" hreflang="en">Política de privacidad (en inglés)</a><a href="/terms/" hreflang="en">Términos de uso (en inglés)</a><a href="mailto:main@cartpour.com">main@cartpour.com</a><span>Para adultos con la edad legal para beber. Bebe con moderación.</span></div></footer>
+</div></div>
+<script src="/js/gsap/gsap.min.js" defer></script>
+<script src="/js/gsap/ScrollTrigger.min.js" defer></script>
+<script src="/js/gsap/ScrollSmoother.min.js" defer></script>
 <script src="/js/hero.js" defer></script>
 <script data-goatcounter="https://cart-pour.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

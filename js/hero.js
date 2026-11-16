@@ -24,6 +24,24 @@ const L = ES ? {
   ask: 'What’s on your shelf?', tap: 'Tap the bottles you own.', away: n => `${n} more are one bottle away.`,
   ready: 'Ready to mix', nothing: 'Nothing yet', more: n => `+${n} more`, name: {},
 };
+
+// Smooth scrolling (GSAP ScrollSmoother, self-hosted in js/gsap/), with the data-speed / data-lag parallax in the HTML.
+// Created before any ScrollTrigger, as GSAP requires. Off under reduced motion (or if GSAP fails to load): the page
+// then scrolls natively, the story pins with CSS sticky, and in-page links jump as usual.
+const SM = window.ScrollSmoother && !matchMedia('(prefers-reduced-motion: reduce)').matches
+  ? (gsap.registerPlugin(ScrollTrigger, ScrollSmoother), ScrollSmoother.create({ smooth: 1.2, smoothTouch: 0.1, effects: true, normalizeScroll: true }))
+  : null;
+if (SM) {
+  document.documentElement.classList.add('smooth');
+  // the content sits in a fixed wrapper, so the browser's own #anchor jump can't move it: glide there instead
+  const go = (hash, smooth) => SM.scrollTo(hash && document.querySelector(hash) ? hash : 0, smooth, 'top 80px');
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault(); go(a.hash, true); history.replaceState(null, '', a.hash || location.pathname);
+  });
+  if (location.hash) addEventListener('load', () => go(location.hash, false));
+}
 (() => {
   const $ = id => document.getElementById(id);
   const demo = $('demo');
@@ -93,6 +111,9 @@ const L = ES ? {
     if (step === 1) rows.forEach((x, i) => x.classList.toggle('on', i < Math.ceil(t * rows.length)));
     if (step === 2) lis.forEach((x, i) => x.classList.toggle('on', i < Math.ceil(t * lis.length)));
   };
+  // with smoothing, ScrollTrigger pins the stage (CSS sticky can't work inside the moving content) and calls render on
+  // every smoothed frame; the scroll event alone would fire at the real position, ahead of what is on screen
+  if (SM) ScrollTrigger.create({ trigger: story, start: `top ${HEAD}px`, end: 'bottom bottom', pin: story.querySelector('.stage'), pinSpacing: false, onUpdate: render, onRefresh: render });
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(render); }, { passive: true });
   addEventListener('resize', render);
   render();
