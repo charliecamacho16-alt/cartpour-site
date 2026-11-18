@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YiP3nV6NhmRCZWJhpuy4dPrNBZ3dYj61+MakPjQQsyo=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-LSGQdSj3d5gdmGCLgJjIr6LTHroaPvQL36fkd1mZFlo=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-YiP3nV6NhmRCZWJhpuy4dPrNBZ3dYj61+MakPjQQsyo=' 'sha256-pf7tWOrsE9b2tkrGNE1FEjE5xIRVj3W/zCRET+RrMQk=' 'sha256-92lzDv0ckTbQpsw28oyxPnc/07UnkhSS7nHuO0DyXNU=' 'sha256-S86LPe5bGvtlmf2Gg+xo0BYIjXYg8eLVhwzKpq5lv6I=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cart-pour.goatcounter.com; connect-src 'self' https://cart-pour.goatcounter.com; font-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CartPour</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff4fc8'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='14' cy='14' r='14' fill='url(%23g)'/%3E%3Cpath d='M7.5 8.5h13L14 15.5z' fill='white'/%3E%3Cpath d='M14 15.5v5.5M10.5 21h7' stroke='white' stroke-width='1.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -66,7 +66,10 @@ a.jump,a.jump:hover{text-decoration:none}
 #t1{display:grid;gap:var(--gap)}
 .zgrid{display:grid;gap:var(--gap)}
 @media(min-width:1000px){.zgrid{grid-template-columns:4fr 8fr;align-items:start}}
-@media(min-width:1000px){#t1{grid-template-columns:4fr 8fr;align-items:start}.side{position:sticky;top:16px}}
+@media(min-width:1000px){#t1{grid-template-columns:4fr 8fr;align-items:start}.side{position:sticky;top:16px}
+ /* Your bar scrolls on its own: a sticky box taller than the screen can't scroll, so its bottom only showed at the page's end */
+ .side{max-height:calc(100svh - 32px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+ html[data-text] .side{max-height:calc((100svh - 32px)/var(--z))}} /* zoom scales svh too */
 @media(max-width:999px){#t1.hasbar>.main{order:-1}} /* phones and tablets: once you have bottles, the drinks come first and Your bar follows */
 .side{background:var(--surface);border-radius:var(--radius-card);padding:var(--pad)}
 .side h2{font-size:18px;font-weight:600;margin:0 0 4px}
@@ -752,6 +755,8 @@ html[data-text] .tick{margin-inline:calc(50% - 50vw/var(--z))} /* edge to edge: 
 ::view-transition-group(*){animation-duration:420ms;animation-timing-function:var(--ease-out)}
 ::view-transition-old(*),::view-transition-new(*){height:100%;animation-duration:220ms}
 ::view-transition-old(root),::view-transition-new(root){animation:none}
+/* a chip with nowhere visible to go (into a folded "+N more" shelf) leaves at once: fading on its old spot overlapped the chip taking it */
+::view-transition-old(*):only-child{animation:none;opacity:0}
 /* entrance: on launch only (html.enter, removed by script after 1s) the first screen rises in, 60 ms apart; blur only on small parts, a blurred section stutters on phones */
 @media(prefers-reduced-motion:no-preference){
 html.enter :is(.top,.tick,#greet,#greet2,#rnowbox,#t1,#t2,#zp){animation:rise 520ms var(--ease-out) both}
@@ -2532,7 +2537,8 @@ function keep(el,f){const top=e=>e.getBoundingClientRect().top,nm=h=>h.childNode
   hd=el.closest('#out')&&jh().filter(h=>h.compareDocumentPosition(el)&Node.DOCUMENT_POSITION_FOLLOWING).pop(),hn=hd&&nm(hd),yh=hd&&top(hd),
   box=el.closest('[id]'),yb=box&&top(box);f();
  const h2=hn&&!el.isConnected&&jh().find(h=>nm(h)===hn),
-  d=el.isConnected?top(el)-y:h2?top(h2)-yh:box&&box.isConnected?top(box)-yb:0;if(Math.abs(d)>.5)scrollBy({top:d,behavior:'instant'})}
+  d=el.isConnected?top(el)-y:h2?top(h2)-yh:box&&box.isConnected?top(box)-yb:0,sc=el.isConnected&&el.closest('.side'); // Your bar scrolls on its own on desktop: move it, not the page
+ if(Math.abs(d)>.5)(sc&&sc.scrollHeight>sc.clientHeight&&getComputedStyle(sc).overflowY==='auto'?sc:window).scrollBy({top:d,behavior:'instant'})}
 function add(s){const bad=[];s.split(/[,;\n]+/).map(strip).filter(Boolean).forEach(t=>{const k=resolve(t)||(t===strip(q.value)&&first);k?sel.add(k):bad.push(t)});q.value='';const nr=bad.length===1&&near(bad[0]),m=$('msg');m.textContent=bad.length?'Not in my recipe book yet: '+bad.join(', ')+'. Check the spelling, or pick it from the shelves below.':'';
  if(nr){const b=document.createElement('button');b.type='button';b.className='lk';b.dataset.k=nr;b.textContent=`Did you mean ${nr}?`;m.append(' ',b)}keep(q,draw)}
 // the closest ingredient name or alias to a typo (at most 1 edit for short words, 2 for longer), as its key
@@ -2690,14 +2696,19 @@ document.addEventListener('click',e=>{
   const so=e.target.closest('[data-s],[data-dir]');if(so){so.dataset.dir?dir=so.dataset.dir:(srt=so.dataset.s,$('smenu').open=false);
    try{localStorage.setItem('barSort',srt);localStorage.setItem('barDir',dir)}catch(x){}draw();return}
   const b=e.target.closest('[data-k]');
-  if(b){const k=b.dataset.k,go=()=>{sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)};const rm=!!b.closest('#mine')&&sel.has(k);b.closest('#most,#mine')?glide(go):go();if(rm)toast(`Removed ${k}`,()=>glide(()=>{sel.add(k);draw()}))} // the glide applies go() a frame later, so decide first
+  if(b){const k=b.dataset.k,go=()=>{sel.has(k)?sel.delete(k):sel.add(k);q.value='';$('msg').textContent='';keep(b,draw)};const rm=!!b.closest('#mine')&&sel.has(k);b.closest('#most,#mine')?glide(go,k):go();if(rm)toast(`Removed ${k}`,()=>glide(()=>{sel.add(k);draw()},k))} // the glide applies go() a frame later, so decide first
 });
 // Most used and shelf chips glide between the two lists (View Transitions, like the watermelon tags); without it, or with reduce motion, they just redraw
 // the label, type box and shelves under the chips glide with them, or the Most used row slides over the type box while the shelf grows or shrinks
-const vtn=on=>{document.querySelectorAll('#most [data-k],#mine [data-k]').forEach(c=>c.style.viewTransitionName=on?'k'+[...c.dataset.k].map(ch=>ch.codePointAt(0).toString(36)).join('-'):'');
+// in Most used only the tapped chip (k) glides, and only while it is inside the strip's visible box: a named chip is drawn above
+// the page, unclipped, so naming the whole row flashed the scrolled-away chips across the results, and chips scrolling into
+// view popped in on top of neighbours still sliding. The rest of the row settles at once; shelf chips all glide.
+const vtn=(on,k)=>{const m=$('most').getBoundingClientRect();document.querySelectorAll('#most [data-k],#mine [data-k]').forEach(c=>{const r=c.getBoundingClientRect(),
+  most=c.parentNode.id==='most',ok=!most||c.dataset.k===k&&r.left>=m.left-1&&r.right<=m.right+1; // wholly inside: a half-hidden chip was drawn past the panel's edge
+ c.style.viewTransitionName=on&&ok?'k'+[...c.dataset.k].map(ch=>ch.codePointAt(0).toString(36)).join('-'):''});
  ['mostl','q','dd'].forEach(i=>$(i).style.viewTransitionName=on?'vt-'+i:'')};
-function glide(f){if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduce')return f();
- vtn(1);document.startViewTransition(()=>{f();vtn(1)}).finished.finally(()=>vtn(0))}
+function glide(f,k){if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduce')return f();
+ vtn(1,k);document.startViewTransition(()=>{f();vtn(1,k)}).finished.finally(()=>vtn(0))}
 const SPEC=['frangelico','southern comfort','galliano','drambuie','licor 43','rumchata','jägermeister','amarula','chocolate liqueur','tuaca','hpnotiq','ginger liqueur','pomegranate liqueur','sambuca','ouzo','peach schnapps','peppermint schnapps','cinnamon schnapps','butterscotch schnapps']; // shown in their own box under Liqueurs
 const VAR={vodka:['citron vodka','lime vodka','orange vodka','grapefruit vodka','raspberry vodka','blueberry vodka','peach vodka','apple vodka','cucumber vodka','vanilla vodka','whipped cream vodka'],gin:['pink gin','orange gin','rhubarb gin','sloe gin'],rum:['dark rum','spiced rum','coconut rum','pineapple rum','mango rum','banana rum','vanilla rum'],tequila:['coconut tequila','coffee tequila','pineapple tequila','mango tequila','jalapeño tequila'],whiskey:['bourbon','cinnamon whiskey','apple whiskey','honey whiskey','peach whiskey','pineapple whiskey'],brandy:['apple brandy','cherry brandy','apricot brandy','peach brandy','blackberry brandy']},VK=new Set(Object.values(VAR).flat());
 const kchip=k=>`<button class="chip" data-k="${k}">${k}</button>`;
